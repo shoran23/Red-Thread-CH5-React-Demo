@@ -1,0 +1,17 @@
+@use 'assests/style/variables';
+
+.center {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.center-render {
+    width: 79.5%;
+    height: 99%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

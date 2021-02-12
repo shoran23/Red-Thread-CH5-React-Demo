@@ -1,0 +1,14 @@
+@use 'assests/style/variables';
+
+.icon-button-inactive, .icon-button-active {
+    width: 75px;
+    height: 55px;
+    color: white;
+    background-color: variables.$icon-button-color-inactive;
+    border: 2px solid variables.$theme-color-secondary;
+    border-radius: 10px;
+}
+.icon-button-active {
+    background-color: variables.$icon-button-color-active;
+    border: none;
+}
