@@ -41,7 +41,9 @@ class App extends React.Component {
             {name: 'Floor Box Mic 3', feedback: 50, mute: false, levelJoin: '50', muteJoin: '410'},
             {name: 'Floor Box Mic 4', feedback: 50, mute: false, levelJoin: '51', muteJoin: '411'},
         ],
-        acKeypadText: ''
+        acKeypadText: '',
+        acDial: false,
+        acFader: [{name: 'Call Volume', feedback: 50, mute: false, levelJoin: '42', muteJoin: '402'}]
     }
     /* STATE MANAGEMENT *****************************************************************************************************************************/
     handleState = (key,value) => {
@@ -74,6 +76,8 @@ class App extends React.Component {
                     sourceIndex={this.state.sourceIndex}
                     mics={this.state.mics}
                     acKeypadText={this.state.acKeypadText}
+                    acDial={this.state.acDial}
+                    acFader={this.state.acFader}
                     // functions
                     handleState={this.handleState}
                     handleDisplayState={this.handleDisplayState}

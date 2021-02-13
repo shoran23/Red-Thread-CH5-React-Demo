@@ -29,7 +29,12 @@ class Keypad extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div className='keypad'>
+                <div className='keypad'
+                    style={{
+                        width: this.props.width,
+                        height: this.props.height
+                    }}
+                >
                     <div className='keypad-text-container'>
                         <div className='keypad-text'>{this.props.keypadText}</div>
                         <button className='keypad-text-backspace' onClick={this.props.backspaceKeypadText}>{'<'}</button>
@@ -37,7 +42,7 @@ class Keypad extends React.Component {
                     <div className='keypad-dial'> 
                         <div className='keypad-front'>
                             {this.state.buttons.map((button,index) => (
-                                <KeypadButton
+                               <KeypadButton
                                     // states
                                     key={index}
                                     index={index}
@@ -46,7 +51,6 @@ class Keypad extends React.Component {
                                     // functions
                                     handlePress={this.handlePress}
                                     handleRelease={this.handleRelease}
-
                                 />
                             ))}
                         </div>

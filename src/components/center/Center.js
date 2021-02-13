@@ -32,6 +32,8 @@ class Center extends React.Component {
                 <AudioConferencing
                     // states
                     acKeypadText={this.props.acKeypadText}
+                    acDial={this.props.acDial}
+                    acFader={this.props.acFader}
                     // functions
                     handleState={this.props.handleState}
                 />
