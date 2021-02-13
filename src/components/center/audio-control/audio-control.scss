@@ -1,0 +1,13 @@
+@use '/assests/style/variables';
+
+.audio-control {
+    width: 95%;
+    height: 90%;
+    background-color: rgba(64,64,64,0.5);
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

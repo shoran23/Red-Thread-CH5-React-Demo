@@ -18,9 +18,11 @@ class CenterNavigation extends React.Component {
     state = {
         buttons: [
             {name: 'Video Routing', component: 'matrix'},
-            {name: 'Audio Zone', component: 'audio-zone'},
             {name: 'Audio Conferencing', component: 'ac'},
-            {name: 'Video Conferencing', component: 'vc'}
+            {name: 'Video Conferencing', component: 'vc'},
+            {name: 'Audio Controls', component: 'audio-control'},
+            {name: 'Cable TV Controls', component: 'catv'},
+            {name: 'Blu-ray Control', component: 'blu-ray'}
         ]
     }
     render() {

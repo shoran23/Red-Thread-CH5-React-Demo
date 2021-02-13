@@ -115,7 +115,7 @@
 h3 {
     font-family: Arial, Helvetica, sans-serif;
 }
-.video-routing-display-power-on, .video-routing-display-power-off, .video-routing-display-addition-controls {
+.video-routing-display-power-on, .video-routing-display-power-off, .video-routing-display-listen-on, .video-routing-display-listen-off {
     margin-top: 5%;
     width: 55%;
     height: 10%;
@@ -131,7 +131,7 @@ h3 {
     color: white;
     text-shadow: 1px 1px black;
 }
-.video-routing-display-addition-controls {
+.video-routing-display-listen-on {
     background-color: lightgreen;
     color: white;
     text-shadow: 1px 1px black;

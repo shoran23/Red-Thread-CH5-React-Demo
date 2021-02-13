@@ -24,10 +24,10 @@ class VideoRoutingDestinationList extends React.Component {
                             <button className='video-routing-display-power-off' key={index + 10} onClick={()=> this.props.handleDisplayState(index,'power',true)}>Turn On</button>
                         }
 
-                        {display.sourceIndex > 2 ?
-                            <button className='video-routing-display-addition-controls' key={index + 20}>{`${this.props.sources[display.sourceIndex].name} Control`}</button>
+                        {display.listen ?
+                            <button className='video-routing-display-listen-on' key={index + 20} onClick={()=> this.props.handleDisplayState(index,'listen',false)}>Listen</button>
                         :
-                            <div></div>
+                            <button className='video-routing-display-listen-off' key={index + 20} onClick={()=> this.props.handleDisplayState(index,'listen',true)}>Listen</button>
                         }
                     </div>
                 ))}
