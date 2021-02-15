@@ -1,0 +1,76 @@
+#dpad-top {
+    grid-area: top;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+}
+#dpad-left {
+    grid-area: left;
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+}
+#dpad-center {
+    grid-area: center;
+}
+#dpad-right {
+    grid-area: right;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+#dpad-down {
+    grid-area: down;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+.dpad-button {
+    outline: none;
+    background-color: gray;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.dpad {
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: 33.3% 33.3% 33.3%;
+    grid-template-rows: 33.3% 33.3% 33.3%;
+    grid-template-areas:
+        ". top ."
+        "left center right"
+        ". down .";
+}
+
+.dpad-arrow-up {
+    width: 0; 
+    height: 0; 
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 25px solid black;
+}
+.dpad-arrow-down {
+    width: 0; 
+    height: 0; 
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid black;
+}
+.dpad-arrow-right {
+    width: 0; 
+    height: 0; 
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 20px solid black;
+}
+.dpad-arrow-left {
+    width: 0; 
+    height: 0; 
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent; 
+    border-right:20px solid black; 
+}
+
+
+
+
+

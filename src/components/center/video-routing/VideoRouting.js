@@ -21,6 +21,8 @@ class VideoRouting extends React.Component {
                     sourceIndex={this.props.sourceIndex}
                     // functions
                     handleDisplayState={this.props.handleDisplayState}
+                    sendControlSignal={this.props.sendControlSignal}
+                    pulseControlSignal={this.props.pulseControlSignal}
                 />
             </div>
         )

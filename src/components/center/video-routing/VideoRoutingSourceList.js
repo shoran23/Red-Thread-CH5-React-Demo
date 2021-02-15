@@ -4,17 +4,21 @@ class VideoRoutingSourceButton extends React.Component {
     render() {
         return (
             <React.Fragment>
-                {this.props.index === this.props.sourceIndex ?
-                    <button className='video-routing-source-button-active' onClick={()=> this.props.handleState('sourceIndex',this.props.index)}>{this.props.source.name}</button>
+                {this.props.index > 0 ?
+                    <React.Fragment>
+                        {this.props.index === this.props.sourceIndex ?
+                            <button className='video-routing-source-button-active' onClick={()=> this.props.handleState('sourceIndex',this.props.index)}>{this.props.source.name}</button>
+                        :
+                            <button className='video-routing-source-button-inactive' onClick={()=> this.props.handleState('sourceIndex',this.props.index)}>{this.props.source.name}</button>
+                        }
+                    </React.Fragment>
                 :
-                    <button className='video-routing-source-button-inactive' onClick={()=> this.props.handleState('sourceIndex',this.props.index)}>{this.props.source.name}</button>
+                    <div></div>
                 }
-
             </React.Fragment>
         )
     }
 }
-
 class VideoRoutingSourceList extends React.Component{
     render() {
         return (

@@ -6,6 +6,8 @@ import VideoRouting from './video-routing/VideoRouting'
 import AudioConferencing from './audio-conferencing/AudioConferencing'
 import AudioControl from './audio-control/AudioControl'
 
+import BluRayControl from './blu-ray-control/BluRayControl'
+
 class Center extends React.Component {
     returnComponent = component => {
         switch(component) {
@@ -18,6 +20,8 @@ class Center extends React.Component {
                     // functions
                     handleState={this.props.handleState}
                     handleDisplayState={this.props.handleDisplayState}
+                    sendControlSignal={this.props.sendControlSignal}
+                    pulseControlSignal={this.props.pulseControlSignal}
                 />
             )
             case 'audio-control': return (
@@ -40,7 +44,9 @@ class Center extends React.Component {
             )
             case 'vc': return 'Video Conferencing'
             case 'catv': return 'Cable TV'
-            case 'blu-ray': return 'Blu-ray'
+            case 'blu-ray': return (
+                <BluRayControl/>
+            )   
         }
     }
     render() {

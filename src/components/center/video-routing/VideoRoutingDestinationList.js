@@ -2,6 +2,19 @@ import React from 'react'
 import VideoRoutingDisplay from './VideoRoutingDisplay'
 
 class VideoRoutingDestinationList extends React.Component {
+    handleDisplayListen = (index) => {
+        this.props.sendControlSignal('n','100',this.props.sources[this.props.displays[index].sourceIndex].audioInput)
+        for(let displayIndex=0;displayIndex<this.props.displays.length;displayIndex++) {
+            if(displayIndex === index) {
+                this.props.handleDisplayState(displayIndex,'listen',true)
+            } else {
+                this.props.handleDisplayState(displayIndex,'listen',false)
+            }
+        }
+    }
+    handleDisplayRoute = (index) => {
+        this.props.sendControlSignal('n',this.props.displays[index].routeJoin,this.props.sources[this.props.sourceIndex].videoInput) 
+    }
     render() {
         return (
             <div className='video-routing-destination-list'>
@@ -17,17 +30,18 @@ class VideoRoutingDestinationList extends React.Component {
                             sourceIndex={this.props.sourceIndex}
                             // functions
                             handleDisplayState={this.props.handleDisplayState}
+                            handleDisplayRoute={this.handleDisplayRoute}
                         />
                         {display.power ?
-                            <button className='video-routing-display-power-on' key={index + 10} onClick={()=> this.props.handleDisplayState(index,'power',false)}>Turn Off</button>
+                            <button className='video-routing-display-power-on' key={index + 10} onClick={()=> this.props.pulseControlSignal(display.powerJoin)}>Turn Off</button>
                         :
-                            <button className='video-routing-display-power-off' key={index + 10} onClick={()=> this.props.handleDisplayState(index,'power',true)}>Turn On</button>
+                            <button className='video-routing-display-power-off' key={index + 10} onClick={()=> this.props.pulseControlSignal(display.powerJoin)}>Turn On</button>
                         }
 
                         {display.listen ?
-                            <button className='video-routing-display-listen-on' key={index + 20} onClick={()=> this.props.handleDisplayState(index,'listen',false)}>Listen</button>
+                            <button className='video-routing-display-listen-on' key={index + 20} onClick={()=> this.handleDisplayListen(index)}>Listen</button>
                         :
-                            <button className='video-routing-display-listen-off' key={index + 20} onClick={()=> this.props.handleDisplayState(index,'listen',true)}>Listen</button>
+                            <button className='video-routing-display-listen-off' key={index + 20} onClick={()=> this.handleDisplayListen(index)}>Listen</button>
                         }
                     </div>
                 ))}

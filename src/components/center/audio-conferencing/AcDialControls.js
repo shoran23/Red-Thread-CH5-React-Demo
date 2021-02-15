@@ -60,6 +60,5 @@ class AcDialControls extends React.Component {
             </div>
         )
     }
-
 }
 export default AcDialControls

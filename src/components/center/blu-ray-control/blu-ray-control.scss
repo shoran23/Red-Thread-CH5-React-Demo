@@ -1,0 +1,30 @@
+#blu-ray-control-keypad {
+    grid-area: keypad;
+}
+#blu-ray-control-dpad {
+    grid-area: dpad;
+}
+#blu-ray-control-additional {
+    grid-area: additional;
+}
+#blu-ray-control-transport {
+    grid-area: transport;
+}
+.blu-ray-control {
+    border: 1px solid black;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 33.3% 33.3% 33.3%;
+    grid-template-rows: 75% 25%;
+    grid-template-areas: 
+        "keypad dpad additional"
+        "transport transport transport" ;
+}
+.blu-ray-control-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+}

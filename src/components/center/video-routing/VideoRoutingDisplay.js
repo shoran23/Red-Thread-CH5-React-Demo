@@ -5,18 +5,18 @@ class VideoRoutingDisplay extends React.Component {
         return (
             <React.Fragment>
                 {!this.props.display.power ?
-                    <div className='video-routing-display'>
-                        <div className='video-routing-display-bezel'>
-                            <div className='video-routing-display-screen-off' onClick={()=> this.props.handleDisplayState(this.props.index,'sourceIndex',this.props.sourceIndex)}>
-                                <div className='video-routing-display-screen-off-glare-left'></div>
-                                <div className='video-routing-display-screen-off-glare-right'></div>
+                    <div className='video-routing-display' onClick={()=> this.props.handleDisplayRoute(this.props.index)}>
+                        <div className='video-routing-display-bezel' onClick={()=> this.props.handleDisplayRoute(this.props.index)}>
+                            <div className='video-routing-display-screen-off' onClick={()=> this.props.handleDisplayRoute(this.props.index)}>
+                                <div className='video-routing-display-screen-off-glare-left' onClick={()=> this.props.handleDisplayRoute(this.props.index)}></div>
+                                <div className='video-routing-display-screen-off-glare-right' onClick={()=> this.props.handleDisplayRoute(this.props.index)}></div>
                             </div>
                         </div>
                     </div> 
                 :
-                    <div className='video-routing-display'>
-                        <div className='video-routing-display-bezel'>
-                            <div className='video-routing-display-screen-on' onClick={()=> this.props.handleDisplayState(this.props.index,'sourceIndex',this.props.sourceIndex)}>
+                    <div className='video-routing-display' onClick={()=> this.props.handleDisplayRoute(this.props.index)}>
+                        <div className='video-routing-display-bezel' onClick={()=> this.props.handleDisplayRoute(this.props.index)}>
+                            <div className='video-routing-display-screen-on' onClick={()=> this.props.handleDisplayRoute(this.props.index)}>
                                 {this.props.display.sourceIndex != null ?
                                     this.props.sources[this.props.display.sourceIndex].name
                                 :
