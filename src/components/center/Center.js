@@ -4,9 +4,11 @@ import './center.scss';
 import CenterNavigation from './navigation/CenterNavigation'
 import VideoRouting from './video-routing/VideoRouting'
 import AudioConferencing from './audio-conferencing/AudioConferencing'
+import VideoConferencing from './video-conferencing/VideoConferencing';
 import AudioControl from './audio-control/AudioControl'
 
 import BluRayControl from './blu-ray-control/BluRayControl'
+
 
 class Center extends React.Component {
     returnComponent = component => {
@@ -46,10 +48,15 @@ class Center extends React.Component {
                     pulseControlSignal={this.props.pulseControlSignal}
                 />
             )
-            case 'vc': return 'Video Conferencing'
+            case 'vc': return (
+                <VideoConferencing/>
+            )
             case 'catv': return 'Cable TV'
             case 'blu-ray': return (
-                <BluRayControl/>
+                <BluRayControl
+                    // functions
+                    pulseControlSignal={this.props.pulseControlSignal}
+                />
             )   
         }
     }

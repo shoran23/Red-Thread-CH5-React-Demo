@@ -93,7 +93,7 @@ class App extends React.Component {
     pulseControlSignal = (join) => {
         console.log('pulse control signal')
         this.sendControlSignal('b',join,true)
-        setTimeout(this.sendControlSignal('b',join,false),330)
+        setTimeout(()=> this.sendControlSignal('b',join,false),330)
     }
     subscribe = () => {
         // subscribe display states

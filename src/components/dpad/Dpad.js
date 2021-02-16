@@ -2,73 +2,83 @@ import React from 'react'
 import './dpad.scss'
 
 class DpadArrow extends React.Component {
-    calculateBorderWidth = ()=> {
-        
-    }
-    setArrayType = (type) => {
-        switch(type) {
-            case 'up': return <div className='dpad-arrow-up'
-                style={{
-                    // width: '0', 
-                    // height: '0', 
-                    // borderLeft: '20px solid transparent',
-                    // borderRight: '20px solid transparent',
-                    // borderBottom: '20px solid black',
-                }}
-            />
-            case 'down': return <div className='dpad-arrow-down'
-                style={{
-                    width: '0', 
-                    height: '0', 
-                    borderLeft: '20px solid transparent',
-                    borderRight: '20px solid transparent',
-                    borderTop: '20px solid black',
-                }}
-            />
-            case 'left': return <div className='dpad-arrow-left'
-                style={{
-                    width: '0',
-                    height: '0', 
-                    borderTop: '20px solid transparent',
-                    borderBottom: '20px solid transparent',
-                    borderRight: '20px solid black',
-                }}
-            />
-            case 'right':  return <div className='dpad-arrow-right'
-                style={{
-                    width: '0',
-                    height: '0', 
-                    borderTop: '20px solid transparent',
-                    borderBottom: '20px solid transparent',
-                    borderLeft: '20px solid black',
-                }}
-            />
-        }
-    }
     render() {
         return (
-            this.setArrayType(this.props.arrowType)
+            <div id={`dpad-arrow-${this.props.button}`}/>
+        )
+    }
+}
+class DpadButton extends React.Component {
+    render() {
+        return (
+            <React.Fragment>
+                {this.props.button === this.props.activeButton ?
+                    <button className='dpad-button' id={`dpad-${this.props.button}-active`} onMouseDown={()=> this.props.handlePress(this.props.button)} onMouseUp={this.props.handleRelease}><DpadArrow button={this.props.button} state='active'/></button> 
+                :
+                    <button className='dpad-button' id={`dpad-${this.props.button}-inactive`} onMouseDown={()=> this.props.handlePress(this.props.button)} onMouseUp={this.props.handleRelease}><DpadArrow button={this.props.button} state='inactive'/></button>
+                }
+            </React.Fragment>
         )
     }
 }
 class Dpad extends React.Component {
+    state = {
+        activeButton: '',
+    }
+    handlePress = button => {
+        this.setState({activeButton: button})
+    }
+    handleRelease = () => {
+        this.setState({activeButton: ''})
+    }
     render() {
+        console.log(this.state.activeButton)
         return (
             <div className='dpad'
                 style = {{
                     width: this.props.width,
                     height: this.props.height,
-                }}
-            >
-                <button className='dpad-button' id='dpad-top'><DpadArrow arrowType='up'/></button>
-                <button className='dpad-button' id='dpad-left'><DpadArrow arrowType='left'/></button>
+                }}>
+                <DpadButton 
+                    // states
+                    button='up'
+                    activeButton={this.state.activeButton}
+                    inactiveColor='whitesmoke'
+                    activeColor='#61bed4'
+
+                    // functions
+                    handlePress={this.handlePress}
+                    handleRelease={this.handleRelease}
+                />
+                <DpadButton 
+                    // states
+                    button='left'
+                    activeButton={this.state.activeButton}
+                    // functions
+                    handlePress={this.handlePress}
+                    handleRelease={this.handleRelease}
+                />
                 <button className='dpad-button' id='dpad-center'
                     style={{
                         fontSize: '18px',
                     }}
                 >Select</button>
-                <button className='dpad-button' id='dpad-right'><DpadArrow arrowType='right'/></button>
-                <button className='dpad-button' id='dpad-down'><DpadArrow arrowType='down'/></button>
+                <DpadButton 
+                    // states
+                    button='right'
+                    activeButton={this.state.activeButton}
+                    // functions
+                    handlePress={this.handlePress}
+                    handleRelease={this.handleRelease}
+                />
+                <DpadButton 
+                    // states
+                    button='down'
+                    activeButton={this.state.activeButton}
+                    // functions
+                    handlePress={this.handlePress}
+                    handleRelease={this.handleRelease}
+                />
             </div>
         )
     }

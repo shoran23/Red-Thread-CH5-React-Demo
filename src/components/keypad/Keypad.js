@@ -16,11 +16,11 @@ class KeypadButton extends React.Component {
 }
 class Keypad extends React.Component {
     state = {
-        buttons: ['1','2','3','4','5','6','7','8','9','*','0','#'],
+        buttons: ['1','2','3','4','5','6','7','8','9',this.props.miscLeft,'0',this.props.miscRight],
         pressedButton: null,
     }
     handlePress = index => {
-        this.props.appendKeypadText(this.state.buttons[index])
+        this.props.pressFunction(index,this.state.buttons[index])
         this.setState({pressedButton: index})
     }
     handleRelease = () => {
@@ -35,10 +35,14 @@ class Keypad extends React.Component {
                         height: this.props.height
                     }}
                 >
-                    <div className='keypad-text-container'>
-                        <div className='keypad-text'>{this.props.keypadText}</div>
-                        <button className='keypad-text-backspace' onClick={this.props.backspaceKeypadText}>{'<'}</button>
-                    </div>
+                    {this.props.showText ?
+                        <div className='keypad-text-container'>
+                            <div className='keypad-text'>{this.props.keypadText}</div>
+                            <button className='keypad-text-backspace' onClick={this.props.backspaceKeypadText}>{'<'}</button>
+                        </div>
+                    :
+                        <div></div>
+                    }
                     <div className='keypad-dial'> 
                         <div className='keypad-front'>
                             {this.state.buttons.map((button,index) => (

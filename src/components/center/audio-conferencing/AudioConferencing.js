@@ -6,7 +6,7 @@ import AcDialControls from './AcDialControls.js'
 import VerticalFader from '../../vertical-fader/VerticalFader'
 
 class AudioConferencing extends React.Component {
-    appendKeypadText = value => {
+    appendKeypadText = (index,value) => {
         this.props.handleState('acKeypadText',this.props.acKeypadText + value)
     }
     backspaceKeypadText = () => {
@@ -32,8 +32,11 @@ class AudioConferencing extends React.Component {
                     keypadText={this.props.acKeypadText}  
                     width='30%'
                     height='65%'  
+                    showText={true}
+                    miscLeft='*'
+                    miscRight='#'
                     // functions
-                    appendKeypadText={this.appendKeypadText}
+                    pressFunction={this.appendKeypadText}
                     backspaceKeypadText={this.backspaceKeypadText}
                 />
                 <AcDialControls

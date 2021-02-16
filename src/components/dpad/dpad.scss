@@ -1,25 +1,45 @@
-#dpad-top {
+#dpad-up-inactive, #dpad-up-active {
     grid-area: top;
     border-top-left-radius: 50%;
     border-top-right-radius: 50%;
+    border: 2px solid black;
+    border-bottom: none;
 }
-#dpad-left {
+#dpad-up-active {
+    background: linear-gradient(lightgray,gray);
+}
+#dpad-left-inactive, #dpad-left-active {
     grid-area: left;
     border-top-left-radius: 50%;
     border-bottom-left-radius: 50%;
+    border: 2px solid black;
+    border-right: none;
+}
+#dpad-left-active {
+    background: linear-gradient(90deg,lightgray,gray);
 }
 #dpad-center {
     grid-area: center;
 }
-#dpad-right {
+#dpad-right-inactive, #dpad-right-active {
     grid-area: right;
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%;
+    border: 2px solid black;
+    border-left: none;
 }
-#dpad-down {
+#dpad-right-active {
+    background: linear-gradient(90deg,gray,lightgray);
+}
+#dpad-down-inactive, #dpad-down-active {
     grid-area: down;
     border-bottom-left-radius: 50%;
     border-bottom-right-radius: 50%;
+    border: 2px solid black;
+    border-top: none;
+}
+#dpad-down-active {
+    background: linear-gradient(gray,lightgray);
 }
 .dpad-button {
     outline: none;
@@ -31,7 +51,6 @@
     align-items: center;
 }
 .dpad {
-    border: 1px solid black;
     display: grid;
     grid-template-columns: 33.3% 33.3% 33.3%;
     grid-template-rows: 33.3% 33.3% 33.3%;
@@ -40,29 +59,28 @@
         "left center right"
         ". down .";
 }
-
-.dpad-arrow-up {
+#dpad-arrow-up {
     width: 0; 
     height: 0; 
     border-left: 25px solid transparent;
     border-right: 25px solid transparent;
     border-bottom: 25px solid black;
 }
-.dpad-arrow-down {
+#dpad-arrow-down {
     width: 0; 
     height: 0; 
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
     border-top: 20px solid black;
 }
-.dpad-arrow-right {
+#dpad-arrow-right {
     width: 0; 
     height: 0; 
     border-top: 20px solid transparent;
     border-bottom: 20px solid transparent;
     border-left: 20px solid black;
 }
-.dpad-arrow-left {
+#dpad-arrow-left {
     width: 0; 
     height: 0; 
     border-top: 20px solid transparent;
