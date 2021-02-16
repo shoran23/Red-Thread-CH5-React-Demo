@@ -30,6 +30,8 @@ class Center extends React.Component {
                     mics={this.props.mics}
                     // functions
                     handleMicState={this.props.handleMicState}
+                    pulseControlSignal={this.props.pulseControlSignal}
+                    sendControlSignal={this.props.sendControlSignal}
                 />
             )
             case 'ac': return (
@@ -40,6 +42,8 @@ class Center extends React.Component {
                     acFader={this.props.acFader}
                     // functions
                     handleState={this.props.handleState}
+                    sendControlSignal={this.props.sendControlSignal}
+                    pulseControlSignal={this.props.pulseControlSignal}
                 />
             )
             case 'vc': return 'Video Conferencing'

@@ -17,6 +17,13 @@ class AudioConferencing extends React.Component {
     clearKeypadText = () => {
         this.props.handleState('acKeypadText','')
     }
+    handleFaderMute = (index) => {
+        this.props.pulseControlSignal(this.props.acFader[0].muteJoin)
+    }
+    handleFaderLevel = (index,value) => {
+        let scaledLevel = value * 655.35
+        this.props.sendControlSignal('n',this.props.acFader[0].levelJoin,scaledLevel)
+    }
     render() {
         return (
             <div className='audio-conferencing'>
@@ -35,10 +42,14 @@ class AudioConferencing extends React.Component {
                     // functions
                     handleState={this.props.handleState}
                     clearKeypadText={this.clearKeypadText}
-
                 />
                 <VerticalFader
+                    // states
+                    index={0}
                     mic={this.props.acFader[0]}
+                    // functions
+                    handleFaderMute={this.handleFaderMute}
+                    handleFaderLevel={this.handleFaderLevel}
                 />
             </div>
         )

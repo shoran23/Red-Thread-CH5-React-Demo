@@ -11,24 +11,21 @@ class VerticalFader extends React.Component {
         let upperFeedbackLimit = 90
         let lowerFeedbackLimit = -10
         if(this.state.trackY === true) {
-            let setValue = this.state.startingLevel - e.clientY
+            let setValue = this.state.startingLevel - e.touches[0].clientY
             if(setValue > 0) {
                 if(this.props.mic.feedback < upperFeedbackLimit) {
-                    this.props.handleMicState(this.props.index,'feedback',this.props.mic.feedback + 1)
+                    this.props.handleFaderLevel(this.props.index,this.props.mic.feedback + 1)
                 }
             } else {
-                if(this.props.mic.feedback > lowerFeedbackLimit) {
-                    this.props.handleMicState(this.props.index,'feedback',this.props.mic.feedback - 1)
+                if(this.props.mic.feedback > lowerFeedbackLimit ) {
+                    this.props.handleFaderLevel(this.props.index,this.props.mic.feedback - 1)
                 }
             }
         }
     }
     /* MUTE FUNCTIONS **********************************************************************************/
-    toggleMute = () => {
-        this.props.handleMicState(this.props.index,'mute',!this.props.mic.mute)
-    }
     startLevel = e => {
-        this.setState({startingLevel: e.clientY})
+        this.setState({startingLevel: e.touches[0].clientY})
         this.setState({trackY: true})
     }
     stoplevel = () => {
@@ -38,22 +35,22 @@ class VerticalFader extends React.Component {
         return (
             <div className='vertical-fader'>
                 <h5 onMouseUp={this.stoplevel}>{this.props.mic.name}</h5>
-                <div className='vertical-fader-container' onMouseUp={this.stoplevel}>
-                    <div className='vertical-fader-slide-track' onMouseUp={this.stoplevel}>
-                        <div className='vertical-fader-slider' onMouseDown={this.startLevel} onMouseMove={this.changeLevel} onMouseUp={this.stopLevel}>
-                            <div className='vertical-fader-slider-detail' onMouseDown={this.startLevel} onMouseMove={this.changeLevel} onMouseUp={this.stoplevel}></div>
+                <div className='vertical-fader-container' onTouchEnd={this.stoplevel}>
+                    <div className='vertical-fader-slide-track' onTouchEnd={this.stoplevel}>
+                        <div className='vertical-fader-slider' onTouchStart={this.startLevel} onTouchMove={this.changeLevel} onTouchEnd={this.stopLevel}>
+                            <div className='vertical-fader-slider-detail' onTouchStart={this.startLevel} onTouchMove={this.changeLevel} onTouchEnd={this.stoplevel}></div>
                         </div>
                         <div className='vertical-fader-slider-feedback'
-                            onMouseUp={this.stoplevel}
+                            onTouchEnd={this.stoplevel}
                             style={{
                                 height: `${this.props.mic.feedback}%`
                             }}
                         ></div>
                     </div>
                     {this.props.mic.mute ?
-                        <button className='vertical-fader-mute-on' onClick={this.toggleMute}>Muted</button>
+                        <button className='vertical-fader-mute-on' onClick={()=> this.props.handleFaderMute(this.props.index)}>Muted</button>
                     :
-                        <button className='vertical-fader-mute-off' onClick={this.toggleMute}>Mute</button>
+                        <button className='vertical-fader-mute-off' onClick={()=> this.props.handleFaderMute(this.props.index)}>Mute</button>
                     }
                 </div>
             </div>

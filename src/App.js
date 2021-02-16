@@ -33,18 +33,18 @@ class App extends React.Component {
             {name: 'Side Display', sourceIndex: 4, power: true, listen: false, routeJoin: '103', powerJoin: '53', listenJoin: '63'},
         ],
         mics: [
-            {name: 'Wireless Mic 1', feedback: 50, mute: false, levelJoin: '44', muteJoin: '404'},
-            {name: 'Wireless Mic 2', feedback: 50, mute: false, levelJoin: '45', muteJoin: '405'},
-            {name: 'Wireless Mic 3', feedback: 50, mute: false, levelJoin: '46', muteJoin: '406'},
-            {name: 'Wireless Mic 4', feedback: 50, mute: false, levelJoin: '47', muteJoin: '407'},
-            {name: 'Floor Box Mic 1', feedback: 50, mute: false, levelJoin: '48', muteJoin: '408'},
-            {name: 'Floor Box Mic 2', feedback: 50, mute: false, levelJoin: '49', muteJoin: '409'},
-            {name: 'Floor Box Mic 3', feedback: 50, mute: false, levelJoin: '50', muteJoin: '410'},
-            {name: 'Floor Box Mic 4', feedback: 50, mute: false, levelJoin: '51', muteJoin: '411'},
+            {name: 'Wireless Mic 1', feedback: 0, mute: false, levelJoin: '44', muteJoin: '404'},
+            {name: 'Wireless Mic 2', feedback: 0, mute: false, levelJoin: '45', muteJoin: '405'},
+            {name: 'Wireless Mic 3', feedback: 0, mute: false, levelJoin: '46', muteJoin: '406'},
+            {name: 'Wireless Mic 4', feedback: 0, mute: false, levelJoin: '47', muteJoin: '407'},
+            {name: 'Floor Box Mic 1', feedback: 0, mute: false, levelJoin: '48', muteJoin: '408'},
+            {name: 'Floor Box Mic 2', feedback: 0, mute: false, levelJoin: '49', muteJoin: '409'},
+            {name: 'Floor Box Mic 3', feedback: 0, mute: false, levelJoin: '50', muteJoin: '410'},
+            {name: 'Floor Box Mic 4', feedback: 0, mute: false, levelJoin: '51', muteJoin: '411'},
         ],
         acKeypadText: '',
         acDial: false,
-        acFader: [{name: 'Call Volume', feedback: 50, mute: false, levelJoin: '42', muteJoin: '402'}],
+        acFader: [{name: 'Call Volume', feedback: 0, mute: false, levelJoin: '42', muteJoin: '402'}],
     }
     /* STATE MANAGEMENT *****************************************************************************************************************************/
     handleState = (key,value) => {
@@ -60,6 +60,11 @@ class App extends React.Component {
         mics[index][key] = value
         this.setState({mics})
     }
+    handleAcFaderState = (key,value) => {
+        let acFader = this.state.acFader
+        acFader[0][key] = value
+        this.setState({acFader})
+    }
     /* CONTROL SYSTEM FEEDBACK **********************************************************************************************************************/
     handleDisplayRouteFeedback = (displayIndex,videoInput) => {
         let displaySourceIndex = 0
@@ -72,6 +77,14 @@ class App extends React.Component {
         if(this.state.displays[displayIndex].listen === true) {
             this.sendControlSignal('n','100',this.state.sources[this.state.displays[displayIndex].sourceIndex].audioInput)
         }
+    }
+    handleMicLevelFeedback = (index,value) => {
+        let scaledFeedback = value / 655.35    
+        this.handleMicState(index,'feedback',scaledFeedback)
+    }
+    handleAcFaderLevelFeedback = (value) => {
+        let scaledFeedback = value / 655.35
+        this.handleAcFaderState('feedback',scaledFeedback)
     }
     /* CONTROL SYSTEM COMMUNICATION ******************************************************************************************************************/
     sendControlSignal = (type,join,value) => {
@@ -88,6 +101,14 @@ class App extends React.Component {
             CrComLib.subscribeState('n',display.routeJoin,(value)=> this.handleDisplayRouteFeedback(index,value))
             CrComLib.subscribeState('b',display.powerJoin,(value)=> this.handleDisplayState(index,'power',value))
         })}
+        // subscibe mic faders
+        {this.state.mics.map((mic,index) => {
+            CrComLib.subscribeState('b',mic.muteJoin,(value)=> this.handleMicState(index,'mute',value))
+            CrComLib.subscribeState('n',mic.levelJoin,(value)=> this.handleMicLevelFeedback(index,value))
+        })}
+        // subscribe ac fader
+        CrComLib.subscribeState('b',this.state.acFader[0].muteJoin,(value)=> this.handleAcFaderState('mute',value))
+        CrComLib.subscribeState('n',this.state.acFader[0].levelJoin,(value)=> this.handleAcFaderLevelFeedback(value))
     }
     render() {
         return (
@@ -109,6 +130,7 @@ class App extends React.Component {
                     handleMicState={this.handleMicState}
                     sendControlSignal={this.sendControlSignal}
                     pulseControlSignal={this.pulseControlSignal}
+                    handleAcFaderState={this.handleAcFaderState}
                 />
                 <Footer/>
             </div>
