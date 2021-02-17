@@ -45,6 +45,10 @@ class App extends React.Component {
         acKeypadText: '',
         acDial: false,
         acFader: [{name: 'Call Volume', feedback: 0, mute: false, levelJoin: '42', muteJoin: '402'}],
+        vcKeypadText: '',
+        vcDial: false,
+        vcFader: [{name: 'Call Volume', feedback: 0, mute: false, levelJoin: '43', muteJoin: '403'}],
+        VcDirectoryItems: [],
     }
     /* STATE MANAGEMENT *****************************************************************************************************************************/
     handleState = (key,value) => {
@@ -86,6 +90,14 @@ class App extends React.Component {
         let scaledFeedback = value / 655.35
         this.handleAcFaderState('feedback',scaledFeedback)
     }
+    handleVcContacts = () => {
+        class VcDirectoryItem {
+            constructor(name,join) {
+                this.name = name
+                this.join = join
+            }
+        }
+    }
     /* CONTROL SYSTEM COMMUNICATION ******************************************************************************************************************/
     sendControlSignal = (type,join,value) => {
         CrComLib.publishEvent(type,join,value)
@@ -111,9 +123,12 @@ class App extends React.Component {
         CrComLib.subscribeState('n',this.state.acFader[0].levelJoin,(value)=> this.handleAcFaderLevelFeedback(value))
     }
     render() {
+        console.log(this.state.vcContacts)
         return (
             <div className='app'>
-                <Header />
+                <Header 
+                    jsonTest={this.state.jsonTest}
+                />
                 <Center
                     // states
                     centerComponent={this.state.centerComponent}
@@ -124,6 +139,9 @@ class App extends React.Component {
                     acKeypadText={this.state.acKeypadText}
                     acDial={this.state.acDial}
                     acFader={this.state.acFader}
+                    vcKeypadText={this.state.vcKeypadText}
+                    vcDial={this.state.vcDial}
+                    vcFader={this.state.vcFader}
                     // functions
                     handleState={this.handleState}
                     handleDisplayState={this.handleDisplayState}

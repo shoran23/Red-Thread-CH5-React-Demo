@@ -10,7 +10,6 @@ class AudioConferencing extends React.Component {
         this.props.handleState('acKeypadText',this.props.acKeypadText + value)
     }
     backspaceKeypadText = () => {
-        console.log('backspace')
         let keypadText = this.props.acKeypadText.slice(0,-1)
         this.props.handleState('acKeypadText',keypadText)
     }

@@ -6,9 +6,7 @@ import VideoRouting from './video-routing/VideoRouting'
 import AudioConferencing from './audio-conferencing/AudioConferencing'
 import VideoConferencing from './video-conferencing/VideoConferencing';
 import AudioControl from './audio-control/AudioControl'
-
 import BluRayControl from './blu-ray-control/BluRayControl'
-
 
 class Center extends React.Component {
     returnComponent = component => {
@@ -49,7 +47,14 @@ class Center extends React.Component {
                 />
             )
             case 'vc': return (
-                <VideoConferencing/>
+                <VideoConferencing
+                    // states
+                    vcKeypadText={this.props.vcKeypadText}
+                    vcDial={this.props.vcDial}
+                    vcFader={this.props.vcFader}
+                    // functions
+                    handleState={this.props.handleState}
+                />
             )
             case 'catv': return 'Cable TV'
             case 'blu-ray': return (
