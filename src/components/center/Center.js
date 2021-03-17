@@ -52,6 +52,11 @@ class Center extends React.Component {
                     vcKeypadText={this.props.vcKeypadText}
                     vcDial={this.props.vcDial}
                     vcFader={this.props.vcFader}
+                    VcDirectoryItems={this.props.VcDirectoryItems}
+                    vcCameraPresets={this.props.vcCameraPresets}
+                    vcCameras={this.props.vcCameras}
+                    vcSelectedCamera={this.props.vcSelectedCamera}
+                    vcSelectedCameraPreset={this.props.vcSelectedCameraPreset}
                     // functions
                     handleState={this.props.handleState}
                 />

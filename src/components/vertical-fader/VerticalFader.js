@@ -23,7 +23,6 @@ class VerticalFader extends React.Component {
             }
         }
     }
-    /* MUTE FUNCTIONS **********************************************************************************/
     startLevel = e => {
         this.setState({startingLevel: e.touches[0].clientY})
         this.setState({trackY: true})
@@ -34,7 +33,7 @@ class VerticalFader extends React.Component {
     render() {
         return (
             <div className='vertical-fader'>
-                <h5 onMouseUp={this.stoplevel}>{this.props.mic.name}</h5>
+                <h5 className='vertical-fader-name' onMouseUp={this.stoplevel}>{this.props.mic.name}</h5>
                 <div className='vertical-fader-container' onTouchEnd={this.stoplevel}>
                     <div className='vertical-fader-slide-track' onTouchEnd={this.stoplevel}>
                         <div className='vertical-fader-slider' onTouchStart={this.startLevel} onTouchMove={this.changeLevel} onTouchEnd={this.stopLevel}>

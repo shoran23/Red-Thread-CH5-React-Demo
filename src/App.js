@@ -12,7 +12,6 @@ window['bridgeReceiveBooleanFromNative'] = bridgeReceiveBooleanFromNative
 window['bridgeReceiveStringFromNative'] = bridgeReceiveStringFromNative
 window['bridgeReceiveObjectFromNative'] = bridgeReceiveObjectFromNative
 
-
 class App extends React.Component {
     state = {
         centerComponent: 'matrix',
@@ -48,7 +47,32 @@ class App extends React.Component {
         vcKeypadText: '',
         vcDial: false,
         vcFader: [{name: 'Call Volume', feedback: 0, mute: false, levelJoin: '43', muteJoin: '403'}],
-        VcDirectoryItems: [],
+        VcDirectoryItems: [
+            {name: 'Contact 1'},
+            {name: 'Contact 2'},
+            {name: 'Contact 3'},
+            {name: 'Contact 4'},
+            {name: 'Contact 5'},
+            {name: 'Contact 6'},
+            {name: 'Contact 7'},
+            {name: 'Contact 8'},
+            {name: 'Contact 9'},
+            {name: 'Contact 10'},
+            {name: 'Contact 11'},
+            {name: 'Contact 12'},
+            {name: 'Contact 13'},
+            {name: 'Contact 14'},
+            {name: 'Contact 15'},
+            {name: 'Contact 16'},
+            {name: 'Contact 17'},
+            {name: 'Contact 18'},
+            {name: 'Contact 19'},
+            {name: 'Contact 20'},
+        ],
+        vcCameraPresets: ['Preset 1','Preset 2','Preset 3','Preset 4','Preset 5'],
+        vcCameras: ['Near Camera','Far Camera'],
+        vcSelectedCamera: null,
+        vcSelectedCameraPreset: null,
     }
     /* STATE MANAGEMENT *****************************************************************************************************************************/
     handleState = (key,value) => {
@@ -142,6 +166,11 @@ class App extends React.Component {
                     vcKeypadText={this.state.vcKeypadText}
                     vcDial={this.state.vcDial}
                     vcFader={this.state.vcFader}
+                    VcDirectoryItems={this.state.VcDirectoryItems}
+                    vcCameraPresets={this.state.vcCameraPresets}
+                    vcCameras={this.state.vcCameras}
+                    vcSelectedCamera={this.state.vcSelectedCamera}
+                    vcSelectedCameraPreset={this.state.vcSelectedCameraPreset}
                     // functions
                     handleState={this.handleState}
                     handleDisplayState={this.handleDisplayState}

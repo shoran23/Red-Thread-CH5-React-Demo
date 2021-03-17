@@ -57,6 +57,10 @@
 }
 #video-conferencing-dial-fader-container {
     grid-area: fader;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 .video-conferencing-dial-buttons {
     width: 45%;
@@ -75,8 +79,6 @@
     border-radius: 10px;
     margin-bottom: 1%;
 }
-
-
 .video-conferencing-directory {
     border: 1px solid black;
     width: 100%;
@@ -92,5 +94,95 @@
     width: 100%;
     height: 100%;
 }
+
+#video-conferencing-directory {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+}
+.video-conferencing-directory-col {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.video-conferencing-directory-item-active, .video-conferencing-directory-item-inactive {
+    width: 99%;
+    height: 10%;
+    border: none;
+    outline: none;
+    margin-bottom: 1%;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    text-shadow: 1px 1px black;
+}
+.video-conferencing-directory-item-active {
+    background-color: rgba(0,150,255,0.3);
+}
+#video-conferencing-directory-center {
+    overflow: scroll;
+}
+.video-conferencing-camera {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+}
+.video-conferencing-camera-col {
+    display: flex;
+    flex-direction: column;
+}
+.video-conferencing-camera-preset-active, .video-conferencing-camera-preset-inactive {
+    font-size: 18px;
+    background-color: variables.$navigation-button-inactive;
+    outline: none;
+}
+.video-conferencing-camera-preset-active {
+    background-color: variables.$navigation-button-active;
+    color: white;
+    text-shadow: 1px 1px black;    
+}
+#video-conferencing-camera-list {
+    grid-area: list;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#video-conferencing-camera-zoom {
+    grid-area: zoom;
+    border: 1px solid black;
+}
+#video-conferencing-camera-ptz {
+    grid-area: ptz;
+    border: 1px solid black;
+}
+#video-conferencing-camera-area {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-template-rows: 25% 75%;
+    grid-template-areas: 
+        "list list"
+        "zoom ptz";
+}
+.video-conferncing-camera-active, .video-conferncing-camera-inactive {
+    width: 30%;
+    height: 40%;
+    font-size: 18px;
+    background-color: variables.$navigation-button-inactive;
+    outline: none;
+    margin-left: 1%;
+}
+.video-conferncing-camera-active {
+    background-color: variables.$navigation-button-active;
+    color: white;
+    text-shadow: 1px 1px black;    
+}
+
+
+
 
 

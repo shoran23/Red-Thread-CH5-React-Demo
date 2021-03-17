@@ -1,47 +1,43 @@
 @use '/assests//style/variables';
 
-.vertical-fader {
-    width: 125px;
-    height: 500px;
+.horizontal-fader {
+    width: 600px;
+    height: 100px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    border-left: 1px solid gray;
-    border-right: 1px solid gray;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
-.vertical-fader-name {
+.horizontal-fader-name {
     width: 100%;
-    height: 10%;
+    height: 20%;
+    font-family: variables.$global-font;
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    font-family: variables.$global-font;
-    color: white;
-    text-shadow: 1px 1px black;
 }
-.vertical-fader-container {
+.horizontal-fader-container {
     width: 100%;
-    height: 90%;   
+    height: 80%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
-.vertical-fader-slide-track {
-    width: 10%;
-    height: 80%;
+.horizontal-fader-slide-track {
+    width: 80%;
+    height: 20%;
     border: 1px solid black;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    flex-direction: row;
     align-items: center;
     background-color: rgba(0,0,0,0.4);
     border-radius: 20px;
 }
-.vertical-fader-slider {
-    width: 300%;
-    height: 10%;
+.horizontal-fader-slider {
+    width: 6.5%;
+    height: 200%;
     border: 4px solid black;
     border-radius: 100%;
     background-color: lightgray;
@@ -49,29 +45,33 @@
     justify-content: center;
     align-items: center;
 }
-.vertical-fader-slider-detail {
+.horizontal-fader-slider-detail {
     border: 2px solid black;
     width: 75%;
     height: 75%;
     border-radius: 100%;
     background-color: gray;
 }
-.vertical-fader-slider-feedback {
+.horizontal-fader-slider-feedback {
     width: 100%;
     height: 20%;
     background-color: variables.$navigation-button-active;
     opacity: 75%;
 }
-.vertical-fader-mute-on, .vertical-fader-mute-off {
-    width: 70%;
-    height: 10%;
+.horizontal-fader-button-container {
+    width: 10%;
+    height: 70%;
+}
+.horizontal-fader-mute-on, .horizontal-fader-mute-off {
+    width: 100%;
+    height: 100%;
     margin-bottom: 20px;
     border-radius: 5px;
     font-size: 16px;
     outline: none;
     border: none;
 }
-.vertical-fader-mute-on {
+.horizontal-fader-mute-on {
     color: white;
     background-color: red;
 }

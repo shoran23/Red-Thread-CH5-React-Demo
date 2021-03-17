@@ -6,7 +6,6 @@ import VideoConferencingDirectory from './VideoConferencingDirectory'
 import VideoConferencingCameras from './VideoConferencingCameras'
 import VideoConferencingContent from './VideoConferencingContent'
 
-
 class VideoConferencing extends React.Component {
     state = {
         vcComponent: 'dial',
@@ -23,8 +22,21 @@ class VideoConferencing extends React.Component {
                     handleState={this.props.handleState}
                 />
             )
-            case 'directory': return <VideoConferencingDirectory/>
-            case 'cameras': return <VideoConferencingCameras/>
+            case 'directory': return (
+                <VideoConferencingDirectory
+                    // states
+                    VcDirectoryItems={this.props.VcDirectoryItems}
+                />
+            )
+            case 'cameras': return <VideoConferencingCameras
+                // states
+                vcCameraPresets={this.props.vcCameraPresets}
+                vcCameras={this.props.vcCameras}
+                vcSelectedCamera={this.props.vcSelectedCamera}
+                vcSelectedCameraPreset={this.props.vcSelectedCameraPreset}
+                // functions
+                handleState={this.props.handleState}
+            />
             case 'content': return <VideoConferencingContent/>
         }
     }
