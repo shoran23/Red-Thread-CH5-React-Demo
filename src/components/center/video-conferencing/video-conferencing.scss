@@ -82,22 +82,16 @@
 .video-conferencing-directory {
     border: 1px solid black;
     width: 100%;
-    height: 100%;
-}
-.video-conferencing-cameras {
-    border: 1px solid black;
-    width: 100%;
-    height: 100%;
+    height: 88%;
 }
 .video-conferencing-content {
-    border: 1px solid black;
     width: 100%;
-    height: 100%;
+    height: 88%;
+    border: 1px solid red;
 }
-
 #video-conferencing-directory {
     width: 100%;
-    height: 100%;
+    height: 88%;
     display: grid;
     grid-template-columns: 25% 50% 25%;
 }
@@ -110,7 +104,7 @@
 }
 .video-conferencing-directory-item-active, .video-conferencing-directory-item-inactive {
     width: 99%;
-    height: 10%;
+    height: 45px;
     border: none;
     outline: none;
     margin-bottom: 1%;
@@ -122,11 +116,13 @@
     background-color: rgba(0,150,255,0.3);
 }
 #video-conferencing-directory-center {
-    overflow: scroll;
+    overflow-y: scroll;
+    position: relative;
+    height: auto;
 }
 .video-conferencing-camera {
     width: 100%;
-    height: 100%;
+    height: 88%;
     display: grid;
     grid-template-columns: 25% 50% 25%;
 }

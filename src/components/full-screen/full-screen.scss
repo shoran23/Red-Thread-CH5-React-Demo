@@ -1,0 +1,75 @@
+@use '/assests/style/variables';
+
+#full-screen {
+    width: 100%;
+    height: 100%;
+}
+#welcome {
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+.full-screen-header {
+    width: 100%;
+    height: 15%;
+    border: 1px solid black;
+    background-color: variables.$theme-color-primary;
+}
+.full-screen-center {
+    width: 100%;
+    height: 70%;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+.full-screen-footer {
+    width: 100%;
+    height: 15%;
+    border: 1px solid black;
+    background-color: variables.$theme-color-primary;
+}
+.full-screen-title {
+    font-family: variables.$global-font;
+    font-size: 48px;
+    margin-bottom: 15%;
+}
+#welcome-message {
+    font-family: variables.$global-font;
+    font-size: 18px;
+}
+#cooling {
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#cooling-center {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+}
+#cooling-center-container {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+#cooling-title {
+    font-size: 28px;
+    font-family: variables.$global-font;
+}
+
+

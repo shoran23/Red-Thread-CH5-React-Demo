@@ -8,17 +8,27 @@ class HorizontalFader extends React.Component {
     }
     /* LEVEL FUNCTIONS *************************************************************************************/
     changeLevel = e => {
-        let upperFeedbackLimit = 90
-        let lowerFeedbackLimit = -10
+        let upperFeedbackLimit = 100
+        let lowerFeedbackLimit = 0
+        let adjustmentInterval = 2
         if(this.state.trackX === true) {
             let setValue = this.state.startingLevel - e.touches[0].clientX
+            console.log(setValue)
             if(setValue > 0) {
-                if(this.props.fader.feedback < upperFeedbackLimit) {
-                    this.props.handleFaderLevel(this.props.index,this.props.fader.feedback + 1)
+                if(this.props.fader.feedback -  adjustmentInterval >= lowerFeedbackLimit) {
+                    this.props.handleFaderLevel(this.props.index,this.props.fader.feedback - adjustmentInterval)
+                } else {
+                    if(this.props.fader.feedback > lowerFeedbackLimit) {
+                        this.props.handleFaderLevel(this.props.index,this.props.fader.feedback - 1)
+                    }
                 }
             } else {
-                if(this.props.fader.feedback < lowerFeedbackLimit) {
-                    this.props.handleFaderLevel(this.props.index,this.props.fader.feedback - 1)
+                if(this.props.fader.feedback + adjustmentInterval <= upperFeedbackLimit) {
+                    this.props.handleFaderLevel(this.props.index,this.props.fader.feedback + adjustmentInterval)
+                } else {
+                    if(this.props.fader.feedback < upperFeedbackLimit) {
+                        this.props.handleFaderLevel(this.props.index,this.props.fader.feedback + 1)
+                    }
                 }
             }
         }
@@ -28,30 +38,42 @@ class HorizontalFader extends React.Component {
         this.setState({trackX: true})
     }
     stopLevel = e => {
-        this.setState({trackY: false})
+        this.setState({trackX: false})
     }
     render() {
+        console.log(this.state.trackX)
         return (
-            <div className='horizontal-fader'>
-                <div className='horizontal-fader-name' onMouseUp={this.stopLevel}>{this.props.fader[0].name}</div>
+            <div className='horizontal-fader'
+                style={{
+                    width: `${this.props.width}`,
+                    height: `${this.props.height}`,
+                }}
+            >
+                <div className='horizontal-fader-name' onTouchEnd={this.stopLevel}
+                    style={{
+                        color: this.props.fontColor,
+                    }}
+                >
+                    {this.props.fader.name}
+                </div>
                 <div className='horizontal-fader-container' onTouchEnd={this.stopLevel}>
                     <div className='horizontal-fader-button-container' onTouchEnd={this.stopLevel}>
-                        {false ?
+                        {this.props.fader.mute ?
                             <button className='horizontal-fader-mute-on' onClick={this.props.handleFaderMute}>Muted</button>
                         :
                             <button className='horizontal-fader-mute-off' onClick={this.props.handleFaderMute}>Mute</button>
                         }   
                     </div>
-                    <div className='horizontal-fader-slide-track' onTouchEnd={this.stopLevel}>
-                        <div className='horizontal-fader-slider' onTouchStart={this.startLevel} onTouchMove={this.changeLevel} onTouchEnd={this.stopLevel}>
-                            <div className='horizontal-fader-slider-detail' onTouchStart={this.startLevel} onTouchMove={this.changeLevel} onTouchEnd={this.stopLevel}></div>
-                        </div>
-                        <div className='horizontal-fader-slider-feedback'
+                    <div className='horizontal-fader-slide-track'  onTouchStart={this.startLevel} onTouchMove={this.changeLevel} onTouchEnd={this.stopLevel}>
+                    <div className='horizontal-fader-slider-feedback'
                             onTouchEnd={this.stopLevel}
                             style={{
-                                height: `${this.props.fader[0].feedback}%`
+                                width: `${this.props.fader.feedback}%`
                             }}
                         >
+                        </div>
+                        <div className='horizontal-fader-slider' onTouchStart={this.startLevel} onTouchMove={this.changeLevel} onTouchEnd={this.stopLevel}>
+                            <div className='horizontal-fader-slider-detail' onTouchStart={this.startLevel} onTouchMove={this.changeLevel} onTouchEnd={this.stopLevel}></div>
                         </div>
                     </div>
                 </div>

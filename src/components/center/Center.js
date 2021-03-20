@@ -6,6 +6,7 @@ import VideoRouting from './video-routing/VideoRouting'
 import AudioConferencing from './audio-conferencing/AudioConferencing'
 import VideoConferencing from './video-conferencing/VideoConferencing';
 import AudioControl from './audio-control/AudioControl'
+import CableTV from './cable-tv/CableTV'
 import BluRayControl from './blu-ray-control/BluRayControl'
 
 class Center extends React.Component {
@@ -57,11 +58,21 @@ class Center extends React.Component {
                     vcCameras={this.props.vcCameras}
                     vcSelectedCamera={this.props.vcSelectedCamera}
                     vcSelectedCameraPreset={this.props.vcSelectedCameraPreset}
+                    vcContentSources={this.props.vcContentSources}
+                    vcSelectedContentSource={this.props.vcSelectedContentSource}
                     // functions
                     handleState={this.props.handleState}
+                    pulseControlSignal={this.props.pulseControlSignal}
+                    sendControlSignal={this.props.sendControlSignal}
                 />
             )
-            case 'catv': return 'Cable TV'
+            case 'catv': return (
+                <CableTV
+                    // functions
+                    pulseControlSignal={this.props.pulseControlSignal}
+                    sendControlSignal={this.props.sendControlSignal}
+                />
+            )
             case 'blu-ray': return (
                 <BluRayControl
                     // functions

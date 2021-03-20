@@ -6,9 +6,19 @@ class KeypadButton extends React.Component {
         return (
             <React.Fragment>
                 {this.props.index === this.props.pressedButton ?
-                    <button className='keypad-button-active' onTouchStart={()=> this.props.handlePress(this.props.index)} onTouchEnd={()=> this.props.handleRelease(this.props.index)}>{this.props.button}</button>
+                    <button className='keypad-button-active' 
+                        onMouseDown={()=> this.props.handlePress(this.props.index)} 
+                        onMouseUp={()=> this.props.handleRelease(this.props.index)}
+                    >
+                        {this.props.button}
+                    </button>
                 :
-                    <button className='keypad-button-inactive' onTouchStart={()=> this.props.handlePress(this.props.index)} onTouchEnd={()=> this.props.handleRelease(this.props.index)}>{this.props.button}</button>
+                    <button className='keypad-button-inactive' 
+                        onMouseDown={()=> this.props.handlePress(this.props.index)} 
+                        onMouseUp={()=> this.props.handleRelease(this.props.index)}
+                    >
+                        {this.props.button}
+                    </button>
                 }
             </React.Fragment>            
         )

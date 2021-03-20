@@ -20,6 +20,8 @@ class VideoConferencing extends React.Component {
                     vcFader={this.props.vcFader}
                     // functions
                     handleState={this.props.handleState}
+                    pulseControlSignal={this.props.pulseControlSignal}
+                    sendControlSignal={this.props.sendControlSignal}
                 />
             )
             case 'directory': return (
@@ -37,7 +39,13 @@ class VideoConferencing extends React.Component {
                 // functions
                 handleState={this.props.handleState}
             />
-            case 'content': return <VideoConferencingContent/>
+            case 'content': return <VideoConferencingContent
+                // states
+                vcContentSources={this.props.vcContentSources}
+                vcSelectedContentSource={this.props.vcSelectedContentSource}
+                // functions
+                handleState={this.props.handleState}
+            />
         }
     }
     handleVcComponent = component => {

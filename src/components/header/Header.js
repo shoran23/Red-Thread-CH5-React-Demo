@@ -8,7 +8,7 @@ class Header extends React.Component {
         return (
             <div className='header'>
                 <img className='header-logo' id='header-logo' src={Logo} alt='Test'/>
-                <button className='icon-button-inactive' id='header-shutdown'>Power</button>
+                <button className='icon-button-inactive' id='header-shutdown' onClick={()=> this.props.handleState('modal','shutdown')}>Power</button>
             </div>
         )
     }

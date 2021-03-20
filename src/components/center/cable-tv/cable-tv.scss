@@ -1,0 +1,81 @@
+@use '/assests/style/variables';
+
+#cable-tv {
+    border: 1px solid black;
+    width: 100%;
+    height: 100%;   
+    display: grid;
+    grid-template-columns: 33.3% 33.3% 33.3%;
+    grid-template-rows: 75% 25%;
+    grid-template-areas: 
+        "keypad dpad controls"
+        "presets presets presets" 
+}
+#cable-tv-keypad {
+    grid-area: keypad;
+    border: 1px solid black;
+}
+#cable-tv-dpad {
+    grid-area: dpad;
+    border: 1px solid black;
+}
+#cable-tv-controls {
+    grid-area: controls;
+    border: 1px solid black;
+}
+#cable-tv-presets {
+    grid-area: presets;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.cable-tv-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#cable-tv-presets-list {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+.cable-tv-control-active, .cable-tv-control-inactive {
+    width: 80%;
+    height: 15%;
+    font-size: 18px;
+    background-color: variables.$navigation-button-inactive;
+    outline: none;
+}
+.cable-tv-control-active {
+    background-color: variables.$navigation-button-active;
+    color: white;
+    text-shadow: 1px 1px black;
+}
+.cable-tv-preset-active, .cable-tv-preset-inactive {
+    width: 15%;
+    height: 60%;
+    font-size: 18px;
+    background-color: variables.$navigation-button-inactive;
+    outline: none;
+}
+.cable-tv-preset-active {
+    background-color: variables.$navigation-button-active;
+    color: white;
+}
+#cable-tv-presets-label {
+    width: 100%;
+    height: 20%;
+    font-family: variables.$global-font;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+

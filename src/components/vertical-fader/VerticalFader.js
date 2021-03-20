@@ -35,7 +35,7 @@ class VerticalFader extends React.Component {
             <div className='vertical-fader'>
                 <h5 className='vertical-fader-name' onMouseUp={this.stoplevel}>{this.props.mic.name}</h5>
                 <div className='vertical-fader-container' onTouchEnd={this.stoplevel}>
-                    <div className='vertical-fader-slide-track' onTouchEnd={this.stoplevel}>
+                    <div className='vertical-fader-slide-track'  onTouchStart={this.startLevel} onTouchMove={this.changeLevel} onTouchEnd={this.stoplevel}>
                         <div className='vertical-fader-slider' onTouchStart={this.startLevel} onTouchMove={this.changeLevel} onTouchEnd={this.stopLevel}>
                             <div className='vertical-fader-slider-detail' onTouchStart={this.startLevel} onTouchMove={this.changeLevel} onTouchEnd={this.stoplevel}></div>
                         </div>

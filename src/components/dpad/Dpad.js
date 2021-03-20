@@ -32,7 +32,6 @@ class Dpad extends React.Component {
         this.setState({activeButton: ''})
     }
     render() {
-        console.log(this.state.activeButton)
         return (
             <div className='dpad'
                 style = {{

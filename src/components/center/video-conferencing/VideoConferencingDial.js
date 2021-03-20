@@ -3,8 +3,6 @@ import Keypad from '../../keypad/Keypad'
 import VideoConferencingDialButtons from './VideoConferencingDialButtons.js'
 import HorizontalFader from './../../horizontal-fader/HorizontalFader.js'
 
-
-
 class VideoConferencingDial extends React.Component {
     appendKeypadText = (index,value) => {
         this.props.handleState('vcKeypadText',this.props.vcKeypadText + value)
@@ -14,11 +12,11 @@ class VideoConferencingDial extends React.Component {
         this.props.handleState('vcKeypadText',keypadText)
     }
     handleFaderMute = index => {
-        this.props.pulseControlSignal(this.props.acFader.muteJoin)
+        this.props.pulseControlSignal(this.props.vcFader[0].muteJoin)
     }
-    handleFaderLevel = (value) => {
+    handleFaderLevel = (index,value) => {
         let scaledLevel = value * 655.35
-        this.props.sendControlSignal('n',this.props.acFader.levelJoin,scaledLevel)
+        this.props.sendControlSignal('n',this.props.vcFader[0].levelJoin,scaledLevel)
     }
     render() {
         return (
@@ -46,7 +44,7 @@ class VideoConferencingDial extends React.Component {
                     <HorizontalFader
                         // states
                         index={0}
-                        fader={this.props.vcFader}
+                        fader={this.props.vcFader[0]}
                         // functions
                         handleFaderMute={this.handleFaderMute}
                         handleFaderLevel={this.handleFaderLevel}

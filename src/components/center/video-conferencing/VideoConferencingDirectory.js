@@ -27,7 +27,7 @@ class VideoConferencingDirectory extends React.Component {
                     <button>Local Phonebook</button>
                     <button>Download Phonebook</button>
                 </div>
-                <div className='video-conferencing-directory-col' id='video-conferencing-directory-center'>
+                <div id='video-conferencing-directory-center'>
                     {this.props.VcDirectoryItems.map((directoryItem,index) => (
                         <VideoConferencingDirectoryItem
                             // states
