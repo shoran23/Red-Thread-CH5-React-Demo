@@ -1,0 +1,66 @@
+@use 'assests/style/variables';
+
+#settings {
+    border: 1px solid black;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 12% 88%;
+    grid-template-areas: 
+        "header header"
+        "nav cont"
+    ;
+}
+#settings-header {
+    grid-area: header;
+    background-color: variables.$theme-color-primary;
+}
+#settings-navigation {
+    grid-area: nav;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+#settings-content {
+    grid-area: cont;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+#settings-header, #settings-navigation, #settings-content {
+
+}
+#settings-navigation-container {
+    width: 100%;
+    height: 99.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center; 
+    background-color: variables.$theme-color-primary;
+}
+.settings-navigation-button-active, .settings-navigation-button-inactive {
+    width: 80%;
+    height: 10%;
+    margin-bottom: 1%;
+    background-color: variables.$navigation-button-inactive;
+    border-radius: 10px;
+    outline: none;
+    font-weight: bold;
+    border: 1px solid lightgray;
+    font-size: 16px;
+}
+.settings-navigation-button-active {
+    background-color: variables.$navigation-button-active;
+    color: white;
+    text-shadow: 1px 1px black;
+    border: none;
+}
+.settings-content-component {
+    width: 99.5%;
+    height: 99.5%;
+}
+

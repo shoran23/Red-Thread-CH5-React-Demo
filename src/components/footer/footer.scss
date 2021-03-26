@@ -6,8 +6,8 @@
     background-color: variables.$theme-color-primary;
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
-    align-items: flex-end;
+    justify-content: space-between;
+    align-items: center;
 }
 .footer-fader-container {
     width: 35%;
@@ -16,4 +16,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+#footer-settings {
+    width: 8%;
+    height: 70%;
+    margin-left: 1%;
+    background: none;
+    font-weight: bold;
+    color: whitesmoke;
+    border: 3px solid white;
+    border-radius: 10px;
 }

@@ -5,6 +5,7 @@ import Center from './components/center/Center'
 import Footer from './components/footer/Footer'
 import Modal from './components/modal/Modal'
 import FullScreen from './components/full-screen/FullScreen'
+import Settings from './components/settings/Settings'
 
 import * as CrComLib from '@crestron/ch5-crcomlib'
 
@@ -16,6 +17,8 @@ window['bridgeReceiveObjectFromNative'] = bridgeReceiveObjectFromNative
 
 class App extends React.Component {
     state = {
+        settings: false,
+        settingsPasscode: '41794',
         modal: null,
         fullScreen: 'welcome',
         centerComponent: 'matrix',
@@ -79,6 +82,14 @@ class App extends React.Component {
             {name: 'Document Camera', videoInput: 1, audioInput: 5, icon: ''},
         ],
         vcSelectedContentSource: null,
+        vcContentIsSharing: true,
+        catvPresets: [
+            {label: 'ESPN', channel: '136'},
+            {label: 'AdultSwim', channel: '125'},
+            {label: 'NBC', channel: '113'},
+            {label: 'CNN', channel: '103'},
+            {label: 'ComedyCentral', channel: '140'}
+        ]
     }
     /* STATE MANAGEMENT *****************************************************************************************************************************/
     handleState = (key,value) => {
@@ -120,6 +131,14 @@ class App extends React.Component {
         this.handleDisplayState(displayIndex,'sourceIndex',displaySourceIndex)
         if(this.state.displays[displayIndex].listen === true) {
             this.sendControlSignal('n','100',this.state.sources[this.state.displays[displayIndex].sourceIndex].audioInput)
+        }
+    }
+    handleContentRouteFeedback = contentInput => {
+        for(let sourceIndex=0;sourceIndex<this.state.vcContentSources.length;sourceIndex++) {
+            if(this.state.vcContentSources[sourceIndex].videoInput === contentInput) {
+                this.handleState('vcSelectedContentSource',sourceIndex)
+                break;
+            }
         }
     }
     handleMicLevelFeedback = (index,value) => {
@@ -172,7 +191,9 @@ class App extends React.Component {
         // subscribe prog fader
         CrComLib.subscribeState('b',this.state.progFader[0].muteJoin,(value)=> this.handleProgFaderState('mute',value))
         CrComLib.subscribeState('n',this.state.progFader[0].levelJoin,(value)=> this.handleProgFaderLevelFeedback(value))
-
+        // subscribe vc content share
+        CrComLib.subscribeState('b','721',(value)=> this.handleState('vcContentIsSharing',value))
+        CrComLib.subscribeState('n','721',(value)=> this.handleContentRouteFeedback(value))
         // subscribe directory
         CrComLib.subscribeState('s','1',(value)=> this.handleVcContacts(value))
     }
@@ -189,65 +210,81 @@ class App extends React.Component {
     render() {
         return (
             <div className='app'>
-                {!this.state.fullScreen ?
+                {!this.state.settings ?
                     <React.Fragment>
-                        <Header 
-                            // states
-                            jsonTest={this.state.jsonTest}
-                            // functions
-                            handleState={this.handleState}
-                        />
-                        <Center
-                            // states
-                            centerComponent={this.state.centerComponent}
-                            sources={this.state.sources}
-                            displays={this.state.displays}
-                            sourceIndex={this.state.sourceIndex}
-                            mics={this.state.mics}
-                            acKeypadText={this.state.acKeypadText}
-                            acDial={this.state.acDial}
-                            acFader={this.state.acFader}
-                            vcKeypadText={this.state.vcKeypadText}
-                            vcDial={this.state.vcDial}
-                            vcFader={this.state.vcFader}
-                            VcDirectoryItems={this.state.VcDirectoryItems}
-                            vcCameraPresets={this.state.vcCameraPresets}
-                            vcCameras={this.state.vcCameras}
-                            vcSelectedCamera={this.state.vcSelectedCamera}
-                            vcSelectedCameraPreset={this.state.vcSelectedCameraPreset}
-                            vcContentSources={this.state.vcContentSources}
-                            vcSelectedContentSource={this.state.vcSelectedContentSource}
-                            // functions
-                            handleState={this.handleState}
-                            handleDisplayState={this.handleDisplayState}
-                            handleMicState={this.handleMicState}
-                            sendControlSignal={this.sendControlSignal}
-                            pulseControlSignal={this.pulseControlSignal}
-                            handleAcFaderState={this.handleAcFaderState}
-                        />
-                        <Footer
-                            // states
-                            progFader={this.state.progFader}
-                            // functions
-                            sendControlSignal={this.sendControlSignal}
-                            pulseControlSignal={this.pulseControlSignal}
-                        />
-                        {this.state.modal !== null ?
-                            <Modal
+                        {!this.state.fullScreen ?
+                            <React.Fragment>
+                                <Header 
+                                    // states
+                                    jsonTest={this.state.jsonTest}
+                                    // functions
+                                    handleState={this.handleState}
+                                />
+                                <Center
+                                    // states
+                                    centerComponent={this.state.centerComponent}
+                                    sources={this.state.sources}
+                                    displays={this.state.displays}
+                                    sourceIndex={this.state.sourceIndex}
+                                    mics={this.state.mics}
+                                    acKeypadText={this.state.acKeypadText}
+                                    acDial={this.state.acDial}
+                                    acFader={this.state.acFader}
+                                    vcKeypadText={this.state.vcKeypadText}
+                                    vcDial={this.state.vcDial}
+                                    vcFader={this.state.vcFader}
+                                    VcDirectoryItems={this.state.VcDirectoryItems}
+                                    vcCameraPresets={this.state.vcCameraPresets}
+                                    vcCameras={this.state.vcCameras}
+                                    vcSelectedCamera={this.state.vcSelectedCamera}
+                                    vcSelectedCameraPreset={this.state.vcSelectedCameraPreset}
+                                    vcContentSources={this.state.vcContentSources}
+                                    vcSelectedContentSource={this.state.vcSelectedContentSource}
+                                    vcContentIsSharing={this.state.vcContentIsSharing}
+                                    catvPresets={this.state.catvPresets}
+                                    // functions
+                                    handleState={this.handleState}
+                                    handleDisplayState={this.handleDisplayState}
+                                    handleMicState={this.handleMicState}
+                                    sendControlSignal={this.sendControlSignal}
+                                    pulseControlSignal={this.pulseControlSignal}
+                                    handleAcFaderState={this.handleAcFaderState}
+                                />
+                                <Footer
+                                    // states
+                                    progFader={this.state.progFader}
+                                    // functions
+                                    sendControlSignal={this.sendControlSignal}
+                                    pulseControlSignal={this.pulseControlSignal}
+                                    handleState={this.handleState}
+                                />
+                                {this.state.modal !== null ?
+                                    <Modal
+                                        // states
+                                        modal={this.state.modal}
+                                        settingsPasscode={this.state.settingsPasscode}
+                                        // functions
+                                        handleState={this.handleState}
+                                        systemShutdown={this.systemShutdown}
+                                    />
+                                :
+                                    <div></div>
+                                }
+                            </React.Fragment>
+                        :
+                            <FullScreen
                                 // states
-                                modal={this.state.modal}
+                                fullScreen={this.state.fullScreen}
+                                settingsPasscode={this.state.settingsPasscode}
                                 // functions
                                 handleState={this.handleState}
-                                systemShutdown={this.systemShutdown}
                             />
-                        :
-                            <div></div>
                         }
                     </React.Fragment>
                 :
-                    <FullScreen
+                    <Settings
                         // states
-                        fullScreen={this.state.fullScreen}
+                        sources={this.state.sources}
                         // functions
                         handleState={this.handleState}
                     />

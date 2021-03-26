@@ -43,8 +43,11 @@ class VideoConferencing extends React.Component {
                 // states
                 vcContentSources={this.props.vcContentSources}
                 vcSelectedContentSource={this.props.vcSelectedContentSource}
+                vcContentIsSharing={this.props.vcContentIsSharing}
                 // functions
                 handleState={this.props.handleState}
+                sendControlSignal={this.props.sendControlSignal}
+                pulseControlSignal={this.props.pulseControlSignal}
             />
         }
     }

@@ -4,6 +4,7 @@ import './modal.scss'
 import Shutdown from './Shutdown'
 import IncomingAc from './IncomingAc'
 import IncomingVc from './IncomingVc'
+import SettingsPasscode from './SettingsPasscode'
 
 class Modal extends React.Component {
     returnModalComponent = component => {
@@ -17,6 +18,14 @@ class Modal extends React.Component {
             )
             case 'incoming-vc': return (
                 <IncomingVc/>
+            )
+            case 'settings-passcode': return (
+                <SettingsPasscode 
+                    // states
+                    settingsPasscode={this.props.settingsPasscode}
+                    // functions
+                    handleState={this.props.handleState}
+                />
             )
         }
     }

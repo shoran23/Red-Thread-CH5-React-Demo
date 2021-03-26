@@ -84,11 +84,6 @@
     width: 100%;
     height: 88%;
 }
-.video-conferencing-content {
-    width: 100%;
-    height: 88%;
-    border: 1px solid red;
-}
 #video-conferencing-directory {
     width: 100%;
     height: 88%;
@@ -177,6 +172,68 @@
     color: white;
     text-shadow: 1px 1px black;    
 }
+#video-conferencing-content {
+    width: 100%;
+    height: 88%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+#video-conferencing-content-sources, #video-conferencing-content-options {
+    width: 65%;
+    height: 15%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+#video-conferencing-content-sources {
+    background-color: rgba(64,64,64,0.5);
+}
+.video-conferencing-content-source-active, .video-conferencing-content-source-inactive {
+    width: 20%;
+    height: 65%;
+    margin: 0.5%;
+    background-color: variables.$navigation-button-inactive;
+    outline: none;
+    border-radius: 10px;
+    font-weight: bold;
+    border: 1px solid lightgray;
+}
+.video-conferencing-content-source-active {
+    background-color: variables.$navigation-button-active;
+    color: white;
+    text-shadow: 1px 1px black;
+    border: none;
+}
+.video-conferencing-content-option {
+    width: 30%;
+    height: 65%;
+    margin: 0.5%;
+    background-color: variables.$navigation-button-inactive;
+    outline: none;
+    border-radius: 10px;
+    font-weight: bold;
+    border: 1px solid lightgray;
+}
+#video-conferencing-content-start-active {
+    background-color: green;
+    color: white;
+    text-shadow: 1px 1px black;
+}
+#video-conferencing-content-stop-active {
+    background-color: red;
+    color: white;
+    text-shadow: 1px 1px black;
+}
+
+
+
+
+
+
 
 
 

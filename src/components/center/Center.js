@@ -60,6 +60,7 @@ class Center extends React.Component {
                     vcSelectedCameraPreset={this.props.vcSelectedCameraPreset}
                     vcContentSources={this.props.vcContentSources}
                     vcSelectedContentSource={this.props.vcSelectedContentSource}
+                    vcContentIsSharing={this.props.vcContentIsSharing}
                     // functions
                     handleState={this.props.handleState}
                     pulseControlSignal={this.props.pulseControlSignal}
@@ -68,6 +69,8 @@ class Center extends React.Component {
             )
             case 'catv': return (
                 <CableTV
+                    // states
+                    catvPresets={this.props.catvPresets}
                     // functions
                     pulseControlSignal={this.props.pulseControlSignal}
                     sendControlSignal={this.props.sendControlSignal}

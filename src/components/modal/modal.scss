@@ -77,3 +77,18 @@
     align-items: center;
 }
 
+#settings-passcode {
+    width: 40%;
+    height: 60%;
+    background-color: #D3D3D3;
+    border: 5px solid variables.$theme-color-primary;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#settings-passcode-message {
+    height: 8%;
+    font-family: variables.$global-font;
+}

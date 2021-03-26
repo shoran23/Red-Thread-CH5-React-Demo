@@ -9,16 +9,25 @@ class VerticalFader extends React.Component {
     /* LEVEL FUNCTIONS ******************************************************************************/
     changeLevel = e => {
         let upperFeedbackLimit = 90
-        let lowerFeedbackLimit = -10
+        let lowerFeedbackLimit = 1
+        let adjustmentInterval = 2
         if(this.state.trackY === true) {
             let setValue = this.state.startingLevel - e.touches[0].clientY
             if(setValue > 0) {
-                if(this.props.mic.feedback < upperFeedbackLimit) {
-                    this.props.handleFaderLevel(this.props.index,this.props.mic.feedback + 1)
+                if(this.props.mic.feedback + adjustmentInterval < upperFeedbackLimit) {
+                    this.props.handleFaderLevel(this.props.index,this.props.mic.feedback + adjustmentInterval)
+                } else {
+                    if(this.props.mic.feedback < upperFeedbackLimit) {
+                        this.props.handleFaderLevel(this.props.index,this.props.mic.feedback + 1)
+                    }
                 }
             } else {
-                if(this.props.mic.feedback > lowerFeedbackLimit ) {
-                    this.props.handleFaderLevel(this.props.index,this.props.mic.feedback - 1)
+                if(this.props.mic.feedback - adjustmentInterval > lowerFeedbackLimit ) {
+                    this.props.handleFaderLevel(this.props.index,this.props.mic.feedback - adjustmentInterval)
+                } else {
+                    if(this.props.mic.feedback > lowerFeedbackLimit) {
+                        this.props.handleFaderLevel(this.props.index,this.props.mic.feedback - 1)
+                    }
                 }
             }
         }

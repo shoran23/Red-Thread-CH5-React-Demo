@@ -1,0 +1,30 @@
+@use 'assests/style/variables';
+
+#settings-sources {
+    display: flex;
+    flex-direction: column;
+}
+#settings-sources-header {
+    height: 10%;
+}
+#settings-sources-list {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: scroll;
+    border: 1px solid black;
+}
+
+.settings-source-active, .settings-source-inactive {
+    width: 98%;
+    height: 11%;
+    margin-bottom: 1%;
+    background-color: rgba(0,0,0,0.4);
+    color: white;
+    text-shadow: 1px 1px black;
+    font-family: variables.$global-font;
+    display: flex;
+
+}

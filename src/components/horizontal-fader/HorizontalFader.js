@@ -8,8 +8,8 @@ class HorizontalFader extends React.Component {
     }
     /* LEVEL FUNCTIONS *************************************************************************************/
     changeLevel = e => {
-        let upperFeedbackLimit = 100
-        let lowerFeedbackLimit = 0
+        let upperFeedbackLimit = 90
+        let lowerFeedbackLimit = 1
         let adjustmentInterval = 2
         if(this.state.trackX === true) {
             let setValue = this.state.startingLevel - e.touches[0].clientX

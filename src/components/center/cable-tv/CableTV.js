@@ -2,6 +2,7 @@ import React from 'react'
 import './cable-tv.scss'
 import Keypad from '../../keypad/Keypad'
 import Dpad from '../../dpad/Dpad'
+import ChannelIcon from '../../channel-icons/ChannelIcon'
 
 class CableTVControl extends React.Component {
     render() {
@@ -38,7 +39,7 @@ class CableTVPreset extends React.Component {
                         onMouseUp={this.props.handlePresetRelease}
                         onMouseOut={this.props.handlePresetRelease}
                     >
-                        {this.props.preset.label}
+                        <ChannelIcon iconRequest={this.props.preset.label}/>
                     </button>
                 :
                     <button className='cable-tv-preset-inactive'
@@ -46,7 +47,7 @@ class CableTVPreset extends React.Component {
                         onMouseUp={this.props.handlePresetRelease}
                         onMouseOut={this.props.handlePresetRelease}
                     >
-                        {this.props.preset.label}
+                        <ChannelIcon iconRequest={this.props.preset.label}/>
                     </button>
                 }
             </React.Fragment>
@@ -62,13 +63,6 @@ class CableTV extends React.Component {
             {label: 'Exit', join: '813'},
             {label: 'Channel Up', join: '814'},
             {label: 'Channel Down', join: '815'}],
-        presets: [
-            {label: 'ESPN', channel: '136'},
-            {label: 'ABC', channel: '125'},
-            {label: 'NBC', channel: '113'},
-            {label: 'CBS', channel: '103'},
-            {label: 'CNN', channel: '140'}
-        ],
         keypadDigits: [
             {label: '0', join: '800'},
             {label: '1', join: '801'},
@@ -144,7 +138,7 @@ class CableTV extends React.Component {
                 <div id='cable-tv-presets'>
                         <div id='cable-tv-presets-label'>Channel Presets</div>
                         <div id='cable-tv-presets-list'>
-                            {this.state.presets.map((preset,index) => (
+                            {this.props.catvPresets.map((preset,index) => (
                                 <CableTVPreset
                                     // states
                                     key={index}

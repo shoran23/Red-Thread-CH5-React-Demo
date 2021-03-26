@@ -1,6 +1,5 @@
 import React from 'react'
 import './full-screen.scss'
-
 import Welcome from './Welcome'
 import Cooling from './Cooling'
 
