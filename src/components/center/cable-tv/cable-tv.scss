@@ -1,31 +1,35 @@
 @use '/assests/style/variables';
 
 #cable-tv {
-    border: 1px solid black;
     width: 100%;
     height: 100%;   
     display: grid;
     grid-template-columns: 33.3% 33.3% 33.3%;
-    grid-template-rows: 75% 25%;
+    grid-template-rows: 10% 65% 25%;
     grid-template-areas: 
+        "title title title"
         "keypad dpad controls"
         "presets presets presets" 
 }
+#cable-tv-title {
+    grid-area: title;
+    font-family: variables.$global-font;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
 #cable-tv-keypad {
     grid-area: keypad;
-    border: 1px solid black;
 }
 #cable-tv-dpad {
     grid-area: dpad;
-    border: 1px solid black;
 }
 #cable-tv-controls {
     grid-area: controls;
-    border: 1px solid black;
 }
 #cable-tv-presets {
     grid-area: presets;
-    border: 1px solid black;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

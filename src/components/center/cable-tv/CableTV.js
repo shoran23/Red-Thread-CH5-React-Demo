@@ -108,6 +108,9 @@ class CableTV extends React.Component {
     render() {
         return (
             <div id='cable-tv'>
+                <div id='cable-tv-title'>
+                    <h1>Cable TV</h1>
+                </div>
                 <div id='cable-tv-keypad' className='cable-tv-col'>
                     <Keypad
                         // states

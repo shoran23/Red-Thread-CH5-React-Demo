@@ -19,11 +19,14 @@ class BluRayControl extends React.Component {
     render() {
         return (
             <div className='blu-ray-control'>
+                <div id='blu-ray-title'>
+                    <h1>Blu-ray</h1>
+                </div>
                 <div className='blu-ray-control-container' id='blu-ray-control-keypad'>
                     <Keypad
                         // states
-                        width='85%'
-                        height='75%'
+                        width='250px'
+                        height='300px'
                         showText={false}
                         miscLeft='Last'
                         miscRight='Enter'
@@ -33,8 +36,8 @@ class BluRayControl extends React.Component {
                 </div>
                 <div className='blu-ray-control-container' id='blu-ray-control-dpad'>
                     <Dpad
-                        width='325px'
-                        height='325px'
+                        width='250px'
+                        height='250px'
                     />
                 </div>
                 <div className='blu-ray-control-container' id='blu-ray-control-additional'>

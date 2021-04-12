@@ -12,18 +12,23 @@ class AudioControl extends React.Component {
     }
     render() {
         return (
-            <div className='audio-control'>
-                {this.props.mics.map((mic,index) => (
-                    <VerticalFader
-                        // states
-                        key={index}
-                        index={index}
-                        mic={mic}
-                        // functions
-                        handleFaderMute={this.handleFaderMute}
-                        handleFaderLevel={this.handleFaderLevel}
-                    />
-                ))}
+            <div id='audio-control'>
+                <div id='audio-control-title'>
+                    <h1>Audio Controls</h1>
+                </div>  
+                <div id='audio-control-faders'>
+                    {this.props.mics.map((mic,index) => (
+                        <VerticalFader
+                            // states
+                            key={index}
+                            index={index}
+                            mic={mic}
+                            // functions
+                            handleFaderMute={this.handleFaderMute}
+                            handleFaderLevel={this.handleFaderLevel}
+                        />
+                    ))}
+                </div>
             </div>
         )
     }

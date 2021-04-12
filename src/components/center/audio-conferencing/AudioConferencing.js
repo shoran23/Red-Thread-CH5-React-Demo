@@ -26,33 +26,38 @@ class AudioConferencing extends React.Component {
     render() {
         return (
             <div className='audio-conferencing'>
-                <Keypad
-                    // states
-                    keypadText={this.props.acKeypadText}  
-                    width='30%'
-                    height='65%'  
-                    showText={true}
-                    miscLeft='*'
-                    miscRight='#'
-                    // functions
-                    pressFunction={this.appendKeypadText}
-                    backspaceKeypadText={this.backspaceKeypadText}
-                />
-                <AcDialControls
-                    // states
-                    acDial={this.props.acDial}
-                    // functions
-                    handleState={this.props.handleState}
-                    clearKeypadText={this.clearKeypadText}
-                />
-                <VerticalFader
-                    // states
-                    index={0}
-                    mic={this.props.acFader[0]}
-                    // functions
-                    handleFaderMute={this.handleFaderMute}
-                    handleFaderLevel={this.handleFaderLevel}
-                />
+                <div id='audio-conferencing-title'>
+                    <h1>Audio Conferencing</h1>
+                </div>
+                <div id='audio-conferencing-controls'>
+                    <Keypad
+                        // states
+                        keypadText={this.props.acKeypadText}  
+                        width='30%'
+                        height='65%'  
+                        showText={true}
+                        miscLeft='*'
+                        miscRight='#'
+                        // functions
+                        pressFunction={this.appendKeypadText}
+                        backspaceKeypadText={this.backspaceKeypadText}
+                    />
+                    <AcDialControls
+                        // states
+                        acDial={this.props.acDial}
+                        // functions
+                        handleState={this.props.handleState}
+                        clearKeypadText={this.clearKeypadText}
+                    />
+                    <VerticalFader
+                        // states
+                        index={0}
+                        mic={this.props.acFader[0]}
+                        // functions
+                        handleFaderMute={this.handleFaderMute}
+                        handleFaderLevel={this.handleFaderLevel}
+                    />
+                </div>
             </div>
         )
     }
