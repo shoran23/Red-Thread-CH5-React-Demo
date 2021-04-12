@@ -13,6 +13,7 @@ class Settings extends React.Component {
         this.setState({[key]: value})
     }
     render() {
+        console.log('local settings = ',this.state.settings)
         return (
             <div id='settings'>
                 <SettingsHeader
@@ -30,6 +31,12 @@ class Settings extends React.Component {
                     selectedNavigation={this.state.selectedNavigation}
                     selectedSettingSource={this.state.selectedSettingSource}
                     sources={this.props.sources}
+                    displays={this.props.displays}
+                    catvPresets={this.props.catvPresets}
+                    // functions
+                    handleStateArray={this.props.handleStateArray}
+                    handleStateArrayIncrease={this.props.handleStateArrayIncrease}
+                    handleStateArrayDeleteItem={this.props.handleStateArrayDeleteItem}
                 />
             </div>
         )

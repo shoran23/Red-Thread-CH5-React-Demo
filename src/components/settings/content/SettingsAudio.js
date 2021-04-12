@@ -4,7 +4,7 @@ class SettingsAudio extends React.Component {
     render() {
         return (
             <div id='settings-audio' className='settings-content-component'>
-                Audio
+                <i className='fas fa-camera'></i>
             </div>
         )
     }

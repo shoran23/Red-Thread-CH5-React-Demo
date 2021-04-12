@@ -10,6 +10,7 @@ class FullScreen extends React.Component {
                 <Welcome 
                     // functions
                     handleState={this.props.handleState}
+                    getSettings={this.props.getSettings}
                 />
             )
             case 'cooling': return (

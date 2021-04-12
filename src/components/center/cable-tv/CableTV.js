@@ -10,17 +10,15 @@ class CableTVControl extends React.Component {
             <React.Fragment>
                 {this.props.index === this.props.selectedControl ?
                     <button className='cable-tv-control-active' 
-                        onMouseDown={()=> this.props.handleControlPress(this.props.index)} 
-                        onMouseUp={this.props.handleControlRelease}
-                        onMouseOut={this.props.handleControlRelease}
+                        onTouchStart={()=> this.props.handleControlPress(this.props.index)} 
+                        onTouchStop={this.props.handleControlRelease}
                     >
                         {this.props.control.label}
                     </button>
                 :
                     <button className='cable-tv-control-inactive' 
-                        onMouseDown={()=> this.props.handleControlPress(this.props.index)} 
-                        onMouseUp={this.props.handleControlRelease}
-                        onMouseOut={this.props.handleControlRelease}
+                        onTouchStart={()=> this.props.handleControlPress(this.props.index)} 
+                        onTouchStop={this.props.handleControlRelease}
                     >
                         {this.props.control.label}
                     </button>
@@ -39,7 +37,10 @@ class CableTVPreset extends React.Component {
                         onMouseUp={this.props.handlePresetRelease}
                         onMouseOut={this.props.handlePresetRelease}
                     >
-                        <ChannelIcon iconRequest={this.props.preset.label}/>
+                        <ChannelIcon 
+                            icon={this.props.preset.icon}
+                            className='cable-tv-preset-icon'
+                        />
                     </button>
                 :
                     <button className='cable-tv-preset-inactive'
@@ -47,7 +48,10 @@ class CableTVPreset extends React.Component {
                         onMouseUp={this.props.handlePresetRelease}
                         onMouseOut={this.props.handlePresetRelease}
                     >
-                        <ChannelIcon iconRequest={this.props.preset.label}/>
+                        <ChannelIcon 
+                            icon={this.props.preset.icon}
+                            className='cable-tv-preset-icon'
+                        />
                     </button>
                 }
             </React.Fragment>
@@ -96,7 +100,7 @@ class CableTV extends React.Component {
     }
     handlePresetPress = index => {
         this.setState({selectedPreset: index})
-        this.props.sendControlSignal('s','801',this.state.presets[index].channel)
+        this.props.sendControlSignal('s','801',this.props.catvPresets[index].channel)
     }
     handlePresetRelease = () => {
         this.setState({selectedPreset: null})

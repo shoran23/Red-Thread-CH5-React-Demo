@@ -7,6 +7,9 @@ import Modal from './components/modal/Modal'
 import FullScreen from './components/full-screen/FullScreen'
 import Settings from './components/settings/Settings'
 
+import {getSettings} from './api/fetchSettings'
+import {postSettings} from './api/fetchSettings'
+
 import * as CrComLib from '@crestron/ch5-crcomlib'
 
 import {bridgeReceiveIntegerFromNative, bridgeReceiveBooleanFromNative, bridgeReceiveStringFromNative, bridgeReceiveObjectFromNative} from '@crestron/ch5-crcomlib/build_bundles/cjs/cr-com-lib'
@@ -24,19 +27,19 @@ class App extends React.Component {
         centerComponent: 'matrix',
         sourceIndex: 0,
         sources: [
-            {name: 'No Source', videoInput: 0, audioInput: 0, icon: ''},
-            {name: 'Wall Laptop', videoInput: 7, audioInput: 12, icon: ''},
-            {name: 'Table Laptop', videoInput: 8, audioInput: 13, icon: ''},
-            {name: 'Document Camera', videoInput: 1, audioInput: 5, icon: ''},
-            {name: 'Cable TV', videoInput: 4, audioInput: 8, icon: ''},
-            {name: 'Blu-ray', videoInput: 5, audioInput: 10, icon: ''},
-            {name: 'VTC Speaker', videoInput: 2, audioInput: 6, icon: ''},
-            {name: 'VTC Content', videoInput: 3, audioInput: 7, icon: ''},
+            // {name: 'No Source', videoInput: 0, audioInput: 0, icon: ''},
+            // {name: 'Wall Laptop', videoInput: 7, audioInput: 12, icon: 'Laptop'},
+            // {name: 'Table Laptop', videoInput: 8, audioInput: 13, icon: 'Laptop'},
+            // {name: 'Document Camera', videoInput: 1, audioInput: 5, icon: 'Computer'},
+            // {name: 'Cable TV', videoInput: 4, audioInput: 8, icon: ''},
+            // {name: 'Blu-ray', videoInput: 5, audioInput: 10, icon: ''},
+            // {name: 'VTC Speaker', videoInput: 2, audioInput: 6, icon: ''},
+            // {name: 'VTC Content', videoInput: 3, audioInput: 7, icon: ''},
         ],
         displays: [
-            {name: 'Left Display', sourceIndex: 0, power: true, listen: false, routeJoin: '101', powerJoin: '51', powerOffJoin: '55', listenJoin: '61'},
-            {name: 'Right Display', sourceIndex: 0, power: false, listen: false, routeJoin: '102', powerJoin: '52', powerOffJoin: '56', listenJoin: '62'},
-            {name: 'Side Display', sourceIndex: 4, power: true, listen: false, routeJoin: '103', powerJoin: '53', powerOffJoin: '57',listenJoin: '63'},
+            // {name: 'Left Display', sourceIndex: 0, power: true, listen: false, routeJoin: '101', powerJoin: '51', powerOffJoin: '55', listenJoin: '61'},
+            // {name: 'Right Display', sourceIndex: 0, power: false, listen: false, routeJoin: '102', powerJoin: '52', powerOffJoin: '56', listenJoin: '62'},
+            // {name: 'Side Display', sourceIndex: 0, power: true, listen: false, routeJoin: '103', powerJoin: '53', powerOffJoin: '57',listenJoin: '63'},
         ],
         progFader: [{name: 'Media Volume', feedback: 0, mute: false, levelJoin: '41', muteJoin: '401'}],
         mics: [
@@ -56,21 +59,21 @@ class App extends React.Component {
         vcDial: false,
         vcFader: [{name: 'Call Volume', feedback: 50, mute: false, levelJoin: '43', muteJoin: '403'}],
         VcDirectoryItems: [
-            {name: 'Contact 1'},
-            {name: 'Contact 2'},
-            {name: 'Contact 3'},
-            {name: 'Contact 4'},
-            {name: 'Contact 5'},
-            {name: 'Contact 6'},
-            {name: 'Contact 7'},
-            {name: 'Contact 8'},
-            {name: 'Contact 9'},
-            {name: 'Contact 10'},
-            {name: 'Contact 11'},
-            {name: 'Contact 12'},
-            {name: 'Contact 13'},
-            {name: 'Contact 14'},
-            {name: 'Contact 15'},
+            // {name: 'Contact 1'},
+            // {name: 'Contact 2'},
+            // {name: 'Contact 3'},
+            // {name: 'Contact 4'},
+            // {name: 'Contact 5'},
+            // {name: 'Contact 6'},
+            // {name: 'Contact 7'},
+            // {name: 'Contact 8'},
+            // {name: 'Contact 9'},
+            // {name: 'Contact 10'},
+            // {name: 'Contact 11'},
+            // {name: 'Contact 12'},
+            // {name: 'Contact 13'},
+            // {name: 'Contact 14'},
+            // {name: 'Contact 15'},
         ],
         vcCameraPresets: ['Preset 1','Preset 2','Preset 3','Preset 4','Preset 5'],
         vcCameras: ['Near Camera','Far Camera'],
@@ -84,16 +87,31 @@ class App extends React.Component {
         vcSelectedContentSource: null,
         vcContentIsSharing: true,
         catvPresets: [
-            {label: 'ESPN', channel: '136'},
-            {label: 'AdultSwim', channel: '125'},
-            {label: 'NBC', channel: '113'},
-            {label: 'CNN', channel: '103'},
-            {label: 'ComedyCentral', channel: '140'}
+            // {icon: 'ABC', channel: '136'},
+            // {icon: 'AdultSwim', channel: '125'},
+            // {icon: 'NBC', channel: '113'},
+            // {icon: 'CNN', channel: '103'},
+            // {icon: 'ComedyCentral', channel: '140'}
         ]
     }
     /* STATE MANAGEMENT *****************************************************************************************************************************/
     handleState = (key,value) => {
         this.setState({[key]: value})
+    }
+    handleStateArray = (array,index,key,value) => {
+        let localArray = this.state[array]
+        localArray[index][key] = value
+        this.setState({[array]: localArray}) 
+    }
+    handleStateArrayIncrease = (array,value) => {
+        let localArray = this.state[array]
+        localArray.push({value})
+        this.setState({localArray})
+    }
+    handleStateArrayDeleteItem = (array,index) => {
+        let localArray = this.state[array]
+        localArray.splice(index,1)
+        this.setState({[array]: localArray})
     }
     handleDisplayState = (index,key,value) => {
         let displays = this.state.displays
@@ -197,6 +215,29 @@ class App extends React.Component {
         // subscribe directory
         CrComLib.subscribeState('s','1',(value)=> this.handleVcContacts(value))
     }
+    /* API *******************************************************************************************************************************************/
+    getSources = () => {
+        getSettings('192.168.0.4','9000','sources')
+        .then(sources => this.setState({sources}))
+    }
+    getDisplays = () => {
+        getSettings('192.168.0.4','9000','displays')
+        .then(displays => this.setState({displays}))
+    }
+    getCatvPresets = () => {
+        getSettings('192.168.0.4','9000','catvPresets')
+        .then(catvPresets => this.setState({catvPresets}))
+    }
+    getVcDirectoryItems = () => {
+        getSettings('192.168.0.4','9000','VcDirectoryItems')
+        .then(VcDirectoryItems => this.setState({VcDirectoryItems}))
+    }
+    getSettings = () => {
+        this.getSources()
+        this.getDisplays()
+        this.getCatvPresets()
+        this.getVcDirectoryItems()
+    }
     /* SYSTEM FUNCTIONS ******************************************************************************************************************************/
     systemShutdown = () => {
         this.setState({fullScreen: 'cooling'})
@@ -208,6 +249,7 @@ class App extends React.Component {
         }
     } 
     render() {
+        console.log('sources = ',this.state.sources)
         return (
             <div className='app'>
                 {!this.state.settings ?
@@ -278,6 +320,7 @@ class App extends React.Component {
                                 settingsPasscode={this.state.settingsPasscode}
                                 // functions
                                 handleState={this.handleState}
+                                getSettings={this.getSettings}
                             />
                         }
                     </React.Fragment>
@@ -285,8 +328,13 @@ class App extends React.Component {
                     <Settings
                         // states
                         sources={this.state.sources}
+                        displays={this.state.displays}
+                        catvPresets={this.state.catvPresets}
                         // functions
                         handleState={this.handleState}
+                        handleStateArray={this.handleStateArray}
+                        handleStateArrayIncrease={this.handleStateArrayIncrease}
+                        handleStateArrayDeleteItem={this.handleStateArrayDeleteItem}
                     />
                 }
             </div>

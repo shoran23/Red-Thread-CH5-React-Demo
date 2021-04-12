@@ -15,7 +15,7 @@ class SettingsNavigationButton extends React.Component {
 }
 class SettingsNavigation extends React.Component {
     state = {
-        buttons: ['Sources','Destinations','Audio','Video Conference','Cable TV','Blu-ray']
+        buttons: ['Sources','Destinations','Audio','Video Conference','Cable TV','Blu-ray','Fetch','Icon Development']
     }
     render() {
         return (
