@@ -24,8 +24,7 @@ class VideoConferencingDirectory extends React.Component {
         return (
             <div id='video-conferencing-directory'>
                 <div className='video-conferencing-directory-col' id='video-conferencing-directory-left'>
-                    <button>Local Phonebook</button>
-                    <button>Download Phonebook</button>
+                    <button className='video-conferencing-directory-buttons'>Download Phonebook</button>
                 </div>
                 <div id='video-conferencing-directory-center'>
                     {this.props.VcDirectoryItems.map((directoryItem,index) => (
@@ -41,8 +40,8 @@ class VideoConferencingDirectory extends React.Component {
                     ))}
                 </div>
                 <div className='video-conferencing-directory-col' id='video-conferencing-direcotry-right'>
-                    <button>Dial Selected</button>
-                    <button>Hang Up</button>
+                    <button className='video-conferencing-directory-buttons'>Dial Selected</button>
+                    <button className='video-conferencing-directory-buttons'>Hang Up</button>
                 </div>
             </div>
         )

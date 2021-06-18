@@ -59,7 +59,7 @@ module.exports = {
         contentBase: path.resolve(__dirname, 'dist'),
         hot: true,
         host: '192.168.0.4',
-        port: 8000,
+        port: 8001,
         disableHostCheck: true,
     }
 }

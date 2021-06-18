@@ -1,7 +1,6 @@
 @use 'assests/style/variables';
 
 #settings {
-    border: 1px solid black;
     width: 100%;
     height: 100%;
     display: grid;
@@ -24,6 +23,8 @@
     align-items: center;
 }
 #settings-content {
+    width: 100%;
+    height: 100%;
     grid-area: cont;
     display: flex;
     flex-direction: column;
@@ -68,8 +69,6 @@
     width: 100%;
     height: 100%;
 }
-
-
 .settings-container {
     display: flex;
     flex-direction: column;
@@ -86,13 +85,13 @@
 .settings-title {
     margin-left: 1%;
 }
-
 .settings-list {
+    width: 100%;
+    height: 90%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    overflow: scroll;
 }
 .settings-item-add {
     width: 18%;

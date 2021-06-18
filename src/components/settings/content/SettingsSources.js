@@ -48,16 +48,6 @@ class SettingsSource extends React.Component {
                                 />
                             </div>
                         </form>
-                        <SourceIcon
-                            className='settings-source-icon settings-icon'
-                            icon={this.props.source.icon}
-                        />  
-                        <SourceIcon
-                            className='settings-source-icon-select settings-icon-select'
-                            icon={'dropdown'}   
-                            value={this.props.source.icon}
-                            handleSelect={this.handleIconChange}
-                        />
                         <button className='settings-source-remove settings-item-remove' onClick={this.handleSourceDelete}>Remove</button>
                     </div>
                 :
@@ -71,12 +61,12 @@ class SettingsSource extends React.Component {
 class SettingsSources extends React.Component {
     render() {
         return (
-            <div id='settings-sources' className='settings-content-component'>
+            <React.Fragment>
                 <div className='settings-header' id='settings-sources-header'>
                     <h3 className='settings-title'>Source Settings</h3>
                     <button className='settings-sources-add settings-item-add' onClick={()=> this.props.handleStateArrayIncrease('sources',{name: '', videoInput: 0, audioInput: 0, icon: ''})}>Add Source</button>
                 </div>
-                <div className='settings-list' id='settings-sources-list'>
+                <div className='settings-list'>
                     {this.props.sources.map((source,index) => (
                         <SettingsSource 
                             // states
@@ -89,7 +79,7 @@ class SettingsSources extends React.Component {
                         />
                     ))}
                 </div>
-            </div>
+            </React.Fragment>
         )
     }
 }

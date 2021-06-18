@@ -19,9 +19,9 @@ class VideoConferencingCameraPresetButton extends React.Component {
         return (
             <React.Fragment>
                 {this.props.index === this.props.vcSelectedCameraPreset ?
-                    <button className='video-conferencing-camera-preset-active' onClick={()=> this.props.handleState('vcSelectedCameraPreset',this.props.index)}>{this.props.preset}</button>
+                    <button className='video-conferencing-camera-preset-active' className='video-conferencing-camera-list-buttons' onClick={()=> this.props.handleState('vcSelectedCameraPreset',this.props.index)}>{this.props.preset}</button>
                 :
-                    <button className='video-conferencing-camera-preset-inactive' onClick={()=> this.props.handleState('vcSelectedCameraPreset',this.props.index)}>{this.props.preset}</button>
+                    <button className='video-conferencing-camera-preset-inactive' className='video-conferencing-camera-list-buttons' onClick={()=> this.props.handleState('vcSelectedCameraPreset',this.props.index)}>{this.props.preset}</button>
                 }
             </React.Fragment>
         )
@@ -32,9 +32,10 @@ class VideoConferencingCameras extends React.Component {
         return (
             <div className='video-conferencing-camera'>
                 <div className='video-conferencing-camera-col'>
-                    <button>Self View</button>
-                    <button>Maximize</button>
-                    <button>Minimize</button>
+                    <div className='video-conferencing-camera-list-label'>Self View</div>
+                    <button className='video-conferencing-camera-list-buttons'>Self View</button>
+                    <button className='video-conferencing-camera-list-buttons'>Maximize</button>
+                    <button className='video-conferencing-camera-list-buttons'>Minimize</button>
                 </div>
                 <div id='video-conferencing-camera-area'>
                     <div id='video-conferencing-camera-list'>
@@ -51,8 +52,8 @@ class VideoConferencingCameras extends React.Component {
                         ))}
                     </div>
                     <div id='video-conferencing-camera-zoom'>
-                        <button>Zoom In</button>
-                        <button>Zoom Out</button>
+                        <button className='video-conferencing-camera-zoom-buttons' id='video-conferencing-camera-zoom-in'>Zoom In</button>
+                        <button className='video-conferencing-camera-zoom-buttons'>Zoom Out</button>
                     </div>
                     <div id='video-conferencing-camera-ptz'>
                         <Dpad
@@ -63,7 +64,7 @@ class VideoConferencingCameras extends React.Component {
                 </div>
                 <div className='video-conferencing-camera-col'>
                     {/* preset saved feedback */}
-                    <h5>Camera Presets</h5>
+                    <div className='video-conferencing-camera-list-label'>Camera Presets</div>
                     {this.props.vcCameraPresets.map((preset,index) => (
                         <VideoConferencingCameraPresetButton
                             // states

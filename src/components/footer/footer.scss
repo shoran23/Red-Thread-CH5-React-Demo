@@ -6,7 +6,7 @@
     background-color: variables.$theme-color-primary;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
 }
 .footer-fader-container {

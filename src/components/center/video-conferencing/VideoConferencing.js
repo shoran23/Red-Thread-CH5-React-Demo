@@ -57,6 +57,9 @@ class VideoConferencing extends React.Component {
     render() {
         return (
             <div className='video-conferencing'>
+                <div id='video-conferencing-title'>
+                    <h1>Video Conferencing</h1>
+                </div>
                 <VideoConferencingNavigation
                     // states
                     vcComponent={this.state.vcComponent}

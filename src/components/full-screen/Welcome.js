@@ -3,7 +3,7 @@ import React from 'react'
 class Welcome extends React.Component {
     welcomePress = () => {
         this.props.handleState('fullScreen',null)
-        this.props.getSettings()
+        //this.props.getSettings()
     }
     render() {
         return (

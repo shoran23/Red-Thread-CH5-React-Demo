@@ -13,7 +13,6 @@ class Footer extends React.Component {
     render() {
         return (
             <div className='footer'>
-                <button id='footer-settings' onClick={()=> this.props.handleState('modal','settings-passcode')}>Settings</button>
                 <div className='footer-fader-container'>
                     <HorizontalFader
                         // states
